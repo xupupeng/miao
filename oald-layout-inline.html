@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            font-size: 0px;
+        }
+
+        .left {
+            display: inline-block;
+            width: 200px;
+            height: 100vh;
+            border-right: 2px solid;
+            box-sizing: border-box;
+
+        }
+
+        .middle {
+            display: inline-block;
+            width: 800px;
+            height: calc(100vh - 100px);
+            border-top: 2px solid;
+            box-sizing: border-box;
+            overflow: scroll;
+            font-size: 100px;
+            text-align: center;
+            line-height: calc(100vh - 100px);
+        }
+
+        .right {
+            display: inline-block;
+            width: 200px;
+            height: 100vh;
+            border: 2px solid;
+            box-sizing: border-box;
+            border-top: none;
+            border-bottom: none;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <span class="left"></span>
+        <span class="middle">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur ratione, debitis tempora laudantium corporis dicta laboriosam quia labore, vero fuga odit nostrum laborum ipsa error doloribus voluptate, sunt repellendus culpa.
+        </span>
+
+        <span class="right"></span>
+    </div>
+
+
+</body>
+
+</html>
