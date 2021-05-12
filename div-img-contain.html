@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,38 +8,41 @@
     <title>Document</title>
     <style>
         div {
-            float: left;
-            width: 500px;
-            height: 500px;
+            position: relative;
             border: 2px solid;
-            margin: 10px;
+            margin: 0 auto;
+            width: 600px;
+            height: 600px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
         }
-        div.beauty {
-            background-image: url(https://i04piccdn.sogoucdn.com/aa50a53c20738477);
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 200px;
+        .beauty img {
+           position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
         }
-        div.redbeauty {
-            background-image: url(https://i03piccdn.sogoucdn.com/0c4a9d2bb6b80849);
-            background-repeat: no-repeat;
-            background-position: 50%;
-            background-size: 500px;
+        .redbeauty img {
+            width: 100%;
+            height:100%;
+             object-fit: contain;
         }
-        div.blackbeauty {
-            background-image: url(https://meyerweb.com/eric/css/edge/complexspiral/glassy-ripple.jpg);
-            background-repeat: no-repeat;
-            background-size: 150px;
-            background-position: left bottom;
+        .blackbeauty img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
-
-
-
     </style>
 </head>
+
 <body>
-    <div class="beauty"></div>
-    <div class="redbeauty"></div>
-    <div class="blackbeauty"></div>
+    <div class="beauty"><img src="https://i04piccdn.sogoucdn.com/aa50a53c20738477" alt=""></div>
+    <div class="redbeauty"><img src="https://i03piccdn.sogoucdn.com/0c4a9d2bb6b80849" alt=""></div>
+    <div class="blackbeauty"><img
+            src="https://img01.sogoucdn.com/app/a/100520093/f9d5c084396d06f6-0c7006bf1d0bb8d5-f6caaf58ef4225eb2307614676de3c85.jpg"
+            alt=""></div>
 </body>
+
 </html>
