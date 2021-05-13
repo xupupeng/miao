@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            list-style: none;
+        }
+        body {
+            background-color: grey;
+        }
+
+        .meau {
+            margin: 0;
+            padding: 0;
+            color: red;
+            width: 100%;
+            
+        }
+      
+        .meau>li {
+            float: left;
+            width: 200px;
+            text-align: center;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        .boa:hover .box {
+            height: 200px;
+            transition: 2s;
+        }
+        .boa {
+            background-color: green;
+            
+        }
+
+        .box {
+            height: 0px;
+            overflow: hidden;
+            left: 30px;
+            background-color: indigo;
+            transition: 15s ;
+
+        }
+
+        .box li {
+            text-align: center;
+            font-size: 36px;
+            margin:20px;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <ul class="meau">
+        <li class="boa">name
+            <ul class="box">
+                <li>小崔</li>
+                <li>小金</li>
+                <li>小伊</li>
+            </ul>
+        </li>
+        <li class="boa">gender
+            <ul class="box">
+                <li>男</li>
+                <li>女</li>
+
+            </ul>
+        </li>
+        <li class="boa">hobby
+            <ul class="box">
+                <li>喝可乐</li>
+                <li>学习</li>
+                <li>拔牙</li>
+            </ul>
+        </li>
+        <li class="boa">age
+            <ul class="box">
+                <li>15</li>
+                <li>16</li>
+                <li>17</li>
+            </ul>
+        </li>
+
+    </ul>
+
+
+</body>
+
+</html>
