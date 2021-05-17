@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table {
+      box-sizing: border box;
+      width: 100%;
+      margin: 0px;
+      border-collapse: collapse;
+    }
+
+    .table {
+      padding: 12px;
+
+    }
+
+    .table th,
+    .table td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    thead tr {
+      border-bottom: 2px solid black;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid grey;
+    }
+
+    .table-dark {
+      background-color: #212529;
+      color: white;
+    }
+
+    .table-dark thead tr {
+      border-bottom: 2px solid;
+    }
+
+
+    .table-borderless thead tr,
+    .table-borderless th,
+    .table-borderless td,
+    .table-borderless tr {
+      border: none;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: grey;
+    }
+
+    .table-hover tbody tr:hover {
+      background-color: rgba(0, 0, 0, 0.9)
+    }
+
+    .table-bordered {
+      border: 2px solid;
+    }
+
+    .table-bordered th,
+    .table-bordered td {
+      border: 1px solid;
+  </style>
+</head>
+
+
+<body>
+  <table class="table table-dark table-hover table-bordered table-borderless table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+
+
+  </table>
+</body>
+
+</html>
