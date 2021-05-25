@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            position: relative;
+            width: 500px;
+            height: 200px;
+            overflow: hidden;
+            margin: 0 auto;
+
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 100%;
+            transition: 1s;
+        }
+
+        input:nth-child(1):checked~div :nth-child(1),
+        input:nth-child(2):checked~div :nth-child(2),
+        input:nth-child(3):checked~div :nth-child(3) {
+            left: 0;
+        }
+
+        section {
+            position: absolute;
+            bottom: 0;
+            left: 200px;
+            z-index: 6;
+        }
+
+        section label {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: grey;
+            border-radius: 10px;
+            margin: 5px;
+            text-align: center;
+            line-height: 20px;
+            color: white;
+        }
+
+        input {
+            display: none;
+        }
+
+        ul {
+            list-style: none;
+            position: absolute;
+            width: 100%;
+            height: 300px;
+            animation: left 3s linear infinite alternate;
+        }
+
+        .img1 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+
+        }
+
+        .img2 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 100%;
+
+        }
+
+        .img3 {
+
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 200%;
+
+        }
+
+        @keyframes left {
+            0 {
+                left: 100%;
+            }
+
+            50% {
+                left: 0;
+            }
+
+            100% {
+                left: -200%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <input type="radio" name="1" id="1">
+    <input type="radio" name="1" id="2" checked>
+    <input type="radio" name="1" id="3">
+    <div>
+        <img id="a"
+            src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/5084e471aa2554867cd1c9bf333a83e4.jpg?thumb=1&w=1839&h=690&f=webp&q=90"
+            alt="">
+        <img id="b"
+            src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/175b22f0032803f8bdbd94590c8c6629.jpeg?thumb=1&w=1839&h=690&f=webp&q=90"
+            alt="">
+        <img id="c"
+            src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/2b6933610dfa42adc25e4adf19ac5450.jpg?thumb=1&w=1839&h=690&f=webp&q=90"
+            alt="">
+        <section>
+            <label for="1">1</label>
+            <label for="2">2</label>
+            <label for="3">3</label>
+        </section>
+    </div>
+
+    <ul>
+        <li><img class="img1"
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/5084e471aa2554867cd1c9bf333a83e4.jpg?thumb=1&w=1839&h=690&f=webp&q=90"
+                alt=""></li>
+        <li><img class="img2"
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/175b22f0032803f8bdbd94590c8c6629.jpeg?thumb=1&w=1839&h=690&f=webp&q=90"
+                alt=""></li>
+        <li><img class="img3"
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/2b6933610dfa42adc25e4adf19ac5450.jpg?thumb=1&w=1839&h=690&f=webp&q=90"
+                alt=""></li>
+    </ul>
+
+</body>
+
+</html>
