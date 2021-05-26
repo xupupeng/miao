@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        header {
+            width: 100%;
+            height: 100px;
+            background-color: grey;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+
+        }
+
+        .left {
+            width: 200px;
+            height: calc(100vh - 100px);
+            background-color: blue;
+        }
+
+        .right {
+            flex: 1;
+            height: calc(100vh - 100px);
+            background-color: yellow;
+            font-size: 50px;
+            overflow: scroll;
+
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <header></header>
+        <main>
+            <div class="left"></div>
+            <div class="right">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error possimus dolorem ullam, aut deleniti
+                    nisi recusandae optio accusantium, explicabo tempora iste fuga reprehenderit animi consequatur
+                    nobis. Earum, veniam maiores culpa.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia
+                    earum possimus eaque aliquid, itaque aliquam, debitis deleniti eveniet eos a, maiores nulla dicta
+                    quaerat fuga ipsa. Officia quia molestiae ullam.Lorem ipsum dolor sit amet, consectetur adipisicing
+                    elit. Vel laudantium modi impedit obcaecati veniam amet rem doloremque saepe quibusdam ullam quis,
+                    ducimus distinctio quae velit nihil voluptatum unde, repellat doloribus.</p>
+            </div>
+        </main>
+
+
+    </section>
+</body>
+
+</html>
