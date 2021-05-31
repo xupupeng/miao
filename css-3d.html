@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            box-sizing: border-box;
+            transform-style: preserve-3d;
+            xborder: 1px solid black;
+            transform: rotatex(20deg) rotatey(30deg);
+            animation: move 3s linear infinite alternate;
+            xanimation-play-state: paused;
+        }
+        
+        x.container:hover {
+            animation: hover 2s linear infinite;
+        }
+        
+        .item {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+        
+        .item:nth-child(1) {
+            background-color: red;
+            xopacity: .5;
+            transform: translatez(150px);
+            transition: all 2s linear;
+        }
+        
+        .item:nth-child(2) {
+            background-color: orange;
+            xopacity: .5;
+            transform: translatez(-150px);
+            transition: all 2s linear;
+        }
+        
+        .item:nth-child(3) {
+            background-color: yellow;
+            xopacity: .5;
+            transform: rotatey(-90deg) translatez(-150px);
+            transition: all 2s linear;
+        }
+        
+        .item:nth-child(4) {
+            background-color: green;
+            xopacity: .5;
+            transform: rotatey(-90deg) translatez(150px);
+            transition: all 2s linear;
+        }
+        
+        .item:nth-child(5) {
+            background-color: blue;
+            xopacity: .5;
+            transform: rotatex(-90deg) translatez(-150px);
+            transition: all 2s linear;
+        }
+        
+        .item:nth-child(6) {
+            background-color: violet;
+            xopacity: .5;
+            transform: rotatex(-90deg) translatez(150px);
+            transition: all 2s linear;
+        }
+        
+        @keyframes move {
+            0 {
+                transform: rotatex(0deg) rotatey(0deg);
+            }
+            100% {
+                transform: rotatex(360deg) rotatey(360deg);
+            }
+        }
+        
+        .container:hover .item:nth-child(1) {
+            transform: translatez(200px);
+            transition: all 2s linear;
+        }
+        
+        .container:hover .item:nth-child(2) {
+            transform: translatez(-300px);
+            transition: all 2s linear;
+        }
+        
+        .container:hover .item:nth-child(3) {
+            transform: rotatey(-90deg) translatez(-300px);
+            transition: all 2s linear;
+        }
+        
+        .container:hover .item:nth-child(4) {
+            transform: rotatey(-90deg) translatez(300px);
+            transition: all 2s linear;
+        }
+        
+        .container:hover .item:nth-child(5) {
+            transform: rotatex(-90deg) translatez(-300px);
+            transition: all 2s linear;
+        }
+        
+        .container:hover .item:nth-child(6) {
+            transform: rotatex(-90deg) translatez(300px);
+            transition: all 2s linear;
+        }
+        
+        img {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="item"><img src="xpp/mi/mi.images/meimv.jpg" alt=""></div>
+        <div class="item"><img src="xpp/mi/mi.images/meimv2.jpg" alt=""></div>
+        <div class="item"><img src="xpp/mi/mi.images/meimv3.jpg" alt=""></div>
+        <div class="item"><img src="xpp/mi/mi.images/meimv4.jpg" alt=""></div>
+        <div class="item"><img src="xpp/mi/mi.images/meimv5.jpg" alt=""></div>
+        <div class="item"><img src="xpp/mi/mi.images/meimv6.jpg" alt=""></div>
+    </div>
+
+</body>
+
+</html>
