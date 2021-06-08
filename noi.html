@@ -132,3 +132,85 @@
     var n = +prompt('请输入n')
     console.log(2 ** n)
 </script>
+
+<!-- ch0104 -->
+<script id="ch0104/01">
+    var N = +prompt('请输入N')
+    if (N > 0) {
+        console.log('positive')
+    } else if (N = 0) {
+        console.log('zero')
+    } else {
+        console.log('negative')
+    }
+</script>
+<script id="ch0104/02">
+    var x = +prompt('请输入x')
+    console.log((Math.abs(x)).toFixed(2))
+</script>
+<script id="ch0104/03">
+    var x = +prompt('请输入x')
+    if (x % 2 == 1) {
+        console.log('odd')
+    } else {
+        console.log('even')
+    }
+</script>
+<script id="ch0104/04">
+</script>
+<script id="ch0104/05">
+    var x = +prompt('请输入x')
+    var y = +prompt('请输入y')
+    if (x > y) {
+        console.log('>')
+    } else if (x = y) {
+        console.log('=')
+    } else {
+        console.log('<')
+    }
+</script>
+<script id="ch0104/06">
+    var x = +prompt('请输入x')
+    if (x >= 10 && x <= 99) {
+        console.log(1)
+    } else {
+        console.log(0)
+    }
+</script>
+<script id="ch0104/07">
+    var lucky = prompt('请输入幸运瓶盖数量')
+    var encourage = prompt('请输入鼓励瓶盖数量')
+    if (lucky >= 10 || encourage >= 20) {
+        console.log(1)
+    } else {
+        console.log(0)
+    }
+</script>
+<script id="ch0104/08">
+    var n = +prompt('请输入n')
+    if (n % 3 == 0 && n % 5 == 0) {
+        console.log("YES")
+    } else {
+        console.log('NO')
+    }
+</script>
+<script id="ch0104/09">
+    var x = +prompt('请输入x')
+    if (x % 3 == 0 && x % 5 == 0 && x % 7 == 0) {
+        console.log('3', '5', '7')
+    } else if (x % 3 == 0 && x % 5 == 0) {
+        console.log(3, 5)
+    } else if (x % 3 == 0 && x % 7 == 0) {
+        console.log(3, 7)
+    } else if (x % 5 == 0 && x % 7 == 0) {
+        console.log(5, 7)
+    } else if (x % 3 == 0) {
+        console.log(3)
+    } else if (x % 5 == 0) {
+        console.log(5)
+    } else if (x % 7 == 0) {
+        console.log(7)
+    } else {
+        console.log('n')
+    }
+</script>
