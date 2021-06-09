@@ -157,6 +157,13 @@
     }
 </script>
 <script id="ch0104/04">
+    var str = prompt('请输入字符')
+    var charcode = str.codePointAt(0)
+    if (charcode % 2 == 0) {
+        console.log('NO')
+    } else {
+        console.log('YES')
+    }
 </script>
 <script id="ch0104/05">
     var x = +prompt('请输入x')
@@ -342,4 +349,10 @@
     } else {
         console.log(('x1' + '\=' + i1 + '\+' + i2), 'x2' + '\=' + i1 + '\-' + i2)
     }
+</script>
+<script id="ch0104/21">
+    var n = prompt('请输入n')
+    var x = prompt('请输入x')
+    var y = prompt('请输入y')
+    console.log(Math.floor(n - y / x))
 </script>
