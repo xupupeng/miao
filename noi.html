@@ -251,9 +251,9 @@
 </script>
 <script id="ch0104/13">
     var x = +prompt('请输入N')
-    if (0 <= x < 5) {
+    if (0 <= x && x < 5) {
         console.log((-x + 2.5).toFixed(3))
-    } else if (5 <= x < 10) {
+    } else if (5 <= x && x < 10) {
         console.log((2 - 1.5 * (x - 3) * (x - 3)).toFixed(3))
     } else {
         console.log((x / 2 - 1.5).toFixed(3))
@@ -264,27 +264,17 @@
     var z = prompt('请输入加急y或者输入不加急n')
 
     var c = Math.ceil((x - 1000) / 500) * 4 + 8
-    if (x <= 1000 && n == z) {
+    if (x <= 1000 && 'n' == z) {
         console.log(8)
-    } else if (x <= 1000 && y == z) {
+    } else if (x <= 1000 && 'y' == z) {
         console.log(8 + 5)
-    } else if (x > 1000 && n == z) {
+    } else if (x > 1000 && 'n' == z) {
         console.log(c)
-    } else if (x > 1000 && y == z) {
+    } else if (x > 1000 && 'y' == z) {
         console.log(c + 5)
     }
 </script>
-<script id="ch0104/15">
-    var x = prompt('请输入x')
-    var y = prompt('请输入y')
-    if (x > y) {
-        console.log('>')
-    } else if (x = y) {
-        console.log('=')
-    } else {
-        console.log('<')
-    }
-</script>
+
 <script id="ch0104/15">
     var a = +prompt('请输入a')
     var b = +prompt('请输入b')
@@ -301,12 +291,8 @@
     var a = +prompt('请输入线段a')
     var b = +prompt('请输入线段b')
     var c = +prompt('请输入线段c')
-    if (a + b > c) {
-        console.log('YES')
-    } else if (a + c > b) {
-        console.log('YES')
-    } else if (b + c > a) {
-        console.log('YES')
+    if (a + b > c && a - b < c) {
+        conssole.log('YES')
     } else {
         console.log('NO')
     }
@@ -332,6 +318,14 @@
     var a = +prompt('请输入数值a')
     var b = +prompt('请输入数值b')
     var c = prompt('请输入操作符c')
+    var x = eval(a + c + b)
+    if (b == 0) {
+        console.log('Divided by zero')
+    } else if (+c !== '\/' && c !== '\+' && c !== '\-' && c !== '\*') {
+        console.log('Inalid operator!')
+    } else {
+        console.log(x)
+    }
 </script>
 <script id="ch0104/20">
     var a = +prompt('请输入a')
@@ -339,13 +333,13 @@
     var c = +prompt('请输入c')
     var x1 = (-b + Math.sqrt(b * b - 4 * a * c) / (2 * a)).toFixed(5)
     var x2 = (-b - Math.sqrt(b * b - 4 * a * c) / (2 * a)).toFixed(5)
-    var i1 = -b / (2 * a)
+    var i1 = (-b / (2 * a)).toFixed(5)
     var i2 = (Math.sqrt(4 * a * c - b * b) / (2 * a)).toFixed(5) + 'i'
     if (b * b == 4 * a * c) {
         console.log(x1)
     } else if (b * b > 4 * a * c) {
         console.log(x1, x2)
     } else {
-        console.log('x1' + '\=' + i1 + i2)
+        console.log(('x1' + '\=' + i1 + '\+' + i2), 'x2' + '\=' + i1 + '\-' + i2)
     }
 </script>
