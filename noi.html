@@ -541,3 +541,45 @@
     }
     console.log(ak)
 </script>
+<script id="ch0105/18">
+    var n = prompt('请输入整数n')
+    var a = prompt('请输入鸡尾疗法总病例a')
+    var b = prompt('请输入鸡尾法疗效的病例数')
+    var x = b / a
+    for (var i = 0; i < n - 1; i++) {
+        var c = +prompt('请输入改进疗法总病例')
+        var d = +prompt('请输入改进疗效的病例数')
+        var y = d / c
+        if (y - x > 0.05) {
+            console.log('better')
+        } else if (x - y > 0.05) {
+            console.log('worse')
+        } else {
+            console('same')
+        }
+    }
+</script>
+<script id="ch0105/19">
+    var n = +prompt('屋顶数n')
+    var ts = 0
+    for (var i = 0; i < n; i++) {
+        var a = +prompt('坐标a')
+        var b = +prompt('坐标b')
+        var c = +prompt('人数c')
+        var s = Math.sqrt(a * a + b * b)
+        var t = Math.ceil((s / 50 + c) + (s / 50 + 0.5 * c))
+        ts += t
+    }
+    console.log(ts)
+</script>
+<script id="ch0105/20">
+    var h = +prompt('请输入初始高度h')
+    var sum = 0
+    var h1 = h / 2
+    for (var i = 1; i <= 9; i++) {
+        sum += h1 * 2
+        h1 = h1 / 2
+    }
+    console.log(sum + h)
+    console.log(h1)
+</script>
