@@ -357,3 +357,187 @@
     console.log(Math.floor(n - y / x))
 </script>
 <!-- ch0105 -->
+<script id="ch0105/01">
+    var n = +prompt('请输入整数n')
+    var sum = 0
+    for (i = 1; i <= n; i++) {
+        sum += +prompt('请输入分数')
+    }
+    console.log((sum / n).toFixed(2))
+</script>
+<script id="ch0105/02">
+    var sum = 0
+    var i = 1
+    while (i <= 12) {
+        sum += +prompt('请输入月结余')
+        i++
+    }
+    console.log('$' + (sum / 12).toFixed(2))
+</script>
+<script id="ch0105/03">
+    var n = +prompt('请输入样本容量n')
+    var sum = 0
+    var i = 1
+    while (i <= n) {
+        sum += +prompt('请输入样本数据')
+        i++
+    }
+    console.log((sum / n).toFixed(4))
+</script>
+<script id="ch0105/04">
+    var n = +prompt('请输入整数n')
+    var sum = 0
+    var i = 1
+    while (i <= n) {
+        sum += +prompt('请输入整数')
+        i++
+    }
+    var x = +(sum / n).toFixed(5)
+    console.log(sum, +x)
+</script>
+<script id="ch0105/05">
+    var n = +prompt('请输入考试人数n')
+    var i = 1
+    var max = 0
+    while (i <= n) {
+        x = +prompt('请输入分数')
+        max = Math.max(x, max)
+        i++
+    }
+    console.log(max)
+</script>
+<script id="ch0105/06">
+    var n = +prompt('请输入个数n')
+    var max = 0
+    var min = 99999
+    for (i = 1; i <= n; i++) {
+        var x = +prompt('请输入整数')
+        max = Math.max(max, x)
+        min = Math.min(min, x)
+    }
+    console.log(max - min)
+</script>
+<script id="ch0105/07">
+    var n = +prompt('请输入参与决赛天数n')
+    var auCount = 0
+    var agCount = 0
+    var cuCount = 0
+    for (var i = 0; i < n; i++) {
+        var au = +prompt('请输入金牌')
+        var ag = +prompt('请输入银牌')
+        var cu = +prompt('请输入铜牌')
+        auCount += au
+        agCount += ag
+        cuCount += cu
+    }
+    console.log(auCount, agCount, cuCount, auCount + agCount + cuCount)
+</script>
+<script id="ch0105/08">
+    var n = +prompt('请输入整数n')
+    var x = (n - 2) * 180
+    var sum = 0
+    for (var i = 0; i < n - 1; i++) {
+        var y = +prompt('请输入已知内角度数')
+        sum += y
+    }
+    console.log(x - sum)
+</script>
+<script id="ch0105/09">
+    var m = +prompt('请输入m')
+    var n = +prompt('请输入n')
+    var sum = 0
+    for (i = m; i <= n; i++) {
+        if (i % 2 == 1) {
+            sum += i
+        }
+    }
+    console.log(sum)
+</script>
+<script id="ch0105/010">
+    var m = +prompt('请输入m')
+    var n = +prompt('请输入n')
+    var sum = 0
+    for (var i = m; i <= n; i++) {
+        if (i % 17 == 0) {
+            sum += i
+        }
+    }
+    console.log(sum)
+</script>
+<script id="ch0105/011">
+    var k = +prompt('请输入k个正整数')
+    var x1 = 0
+    var x5 = 0
+    var x10 = 0
+    for (var i = 0; i < k; i++) {
+        var X = +prompt('请输入正整数')
+        if (X == 1) {
+            x1 += 1
+        }
+        if (X == 5) {
+            x5 += 1
+        }
+        if (X == 10) {
+            x10 += 1
+        }
+    }
+    console.log(x1)
+    console.log(x5)
+    console.log(x10)
+</script>
+<script id="ch0105/012">
+    var N = +prompt('请输入整数序列的长度')
+    var m = +prompt('请输入指定的数字')
+    var y = 0
+    for (var i = 0; i < N; i++) {
+        var x = +prompt('请输入整数')
+        if (x == m) {
+            y += 1
+        }
+    }
+    console.log(y)
+</script>
+<script id="ch0105/013">
+    var a = +prompt('请输入整数a')
+    var n = +prompt('请输入正整数n')
+    var r = 1
+    for (var i = 0; i < n; i++) {
+        r = r * a
+    }
+    console.log(r)
+</script>
+<script id="ch0105/014">
+    var x = +prompt('请输入人口基数')
+    var n = +prompt('请输入年数')
+    var sum = x
+    for (var i = 0; i < n; i++) {
+        sum = sum + sum * 0.001
+    }
+    console.log(sum.toFixed(4))
+</script>
+<script id="ch0105/015">
+    var R = +prompt('请输入整数R')
+    var M = +prompt('请输入整数M')
+    var Y = +prompt('请输入整数Y')
+    var sum = M
+    for (var i = 0; i < Y; i++) {
+        sum = sum * 1.05
+    }
+    console.log(Math.floor(sum))
+</script>
+<script id="ch0105/016">
+    var N = +prompt('请输入正整数N')
+    var K = +prompt('请输入正整数K')
+</script>
+<script id="ch0105/017">
+    var k = +prompt('请输入正整数k')
+    var a1 = 0
+    var a2 = 1
+    var ak = 0
+    for (var i = 0; i < k - 1; i++) {
+        ak = a1 + a2
+        a1 = a2
+        a2 = ak
+    }
+    console.log(ak)
+</script>
