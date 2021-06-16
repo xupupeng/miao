@@ -582,6 +582,122 @@
         sum += h1 * 2
         h1 = h1 / 2
     }
-    console.log(sum + h)
-    console.log(h1)
+    console.log((sum + h).toFixed(4))
+    console.log((h1).toFixed(7))
+</script>
+<script id="ch0105/21">
+    var N = +prompt('请输入正整数N')
+</script>
+<script id="ch0105/22">
+    var s = 0 //手上的钱
+    var c = 0 //存的钱
+    var ok = true // 有余钱
+    for (var i = 1; i <= 12; i++) {
+        s += s + 300 //每个月发的到手的钱
+        var y = Number(prompt('请输入预算'))
+        if (s < y) {
+            console.log(-i)
+            ok = false
+            break
+        }
+        s = s - y
+        if (s >= 100) {
+            c = c + (s - s % 100) //存起来的钱
+            s = s % 100 // 手上还剩的钱
+        }
+    }
+    if (ok) {
+        console.log(c * 1.2)
+    }
+</script>
+<script id="ch0105/23">
+    var m = +prompt('请输入药品总量m')
+    var n = +prompt('请输入取药的人数')
+    var sum = 0
+    for (var i = 0; i < n; i++) {
+        var count = +prompt('请输入药品数量')
+        if (m >= count) {
+            m = m - count
+        } else {
+            sum = sum + 1
+        }
+    }
+    console.log(sum)
+</script>
+<script id="ch0105/24">
+    var n = +prompt('请输入正整数n')
+    var t = 0 //连续正常小时
+    var tmax = 0 //连续正常小时的最大值
+    for (var i = 1; i <= n; i++) {
+        var x = +prompt('请输入收缩压')
+        var y = +prompt('请输入舒张压')
+        if (90 <= x && 140 >= x && 60 <= y && y <= 90) {
+            t = t + 1
+            if (t > tmax) {
+                tmax = t
+            }
+        } else {
+            t = 0 //如果不满足重新计最长小时
+        }
+    }
+    console.log(tmax)
+</script>
+<script id="ch0105/30">
+    let m = +prompt('请输入正整数m')
+    let k = +prompt('请输入k的值')
+    let count = 0
+    let n = m
+    while (m > 0) {
+
+        if (m % 10 == 3) {
+            count++
+        }
+        m = (m - (m % 10)) / 10
+
+    }
+    if (k == count && n % 19 == 0) {
+        console.log('YES')
+    } else {
+        console.log('NO')
+    }
+</script>
+<script id="ch0105/34">
+    let n = +prompt('请输入正整数n')
+    let sum = 0 //阶乘的和
+    let x = 1
+    for (let i = 1; i <= n; i++) {
+        x = x * i //每个阶乘的值
+        sum += x //累计阶乘的和
+    }
+    console.log(sum)
+</script>
+<script id="narcissistic">
+    let n = +prompt('请输入一个数')
+    let x = n
+    var q = n
+    let count = 0
+    for (var i = 1;; i++) {
+        let m = n % 10
+        n = (n - m) / 10
+        if (m == n) {
+            break
+        }
+        count++
+    }
+
+    function narcissistic(x) {
+        let sum = 0
+        while (x > 0) {
+            let y = x % 10
+            let z = Math.pow(y, count)
+            x = (x - y) / 10
+            sum += z
+        }
+        return sum
+    }
+    if (q == narcissistic(x)) {
+        console.log('YES')
+    } else {
+        console.log('NO')
+    }
 </script>
