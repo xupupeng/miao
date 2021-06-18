@@ -586,7 +586,16 @@
     console.log((h1).toFixed(7))
 </script>
 <script id="ch0105/21">
-    var N = +prompt('请输入正整数N')
+    var n = Number(prompt())
+
+    while (n !== 1) {
+        if (n % 2 == 1) {
+            console.log(n + '*3+1=' + (n = n * 3 + 1))
+        } else {
+            console.log(n + '/2=' + (n = n / 2))
+        }
+    }
+    console.log('End')
 </script>
 <script id="ch0105/22">
     var s = 0 //手上的钱
@@ -642,6 +651,66 @@
     }
     console.log(tmax)
 </script>
+<script id="ch0105/26">
+    var n = +prompt('请输入n个四位数')
+    var count = 0
+    for (var i = 1; i <= n; i++) {
+        var m = +prompt('请输入四位数m')
+        var ge = m % 10
+        var shi = (m - ge) / 10 % 10
+        var bai = (m - m % 100) / 100 % 10
+        var qian = (m - m % 1000) / 1000
+        if (ge - qian - bai - shi > 0) {
+            count++
+        }
+    }
+    console.log(count)
+</script>
+<script id="ch0105/27">
+    var k = +prompt('请输入一个整数k')
+    var sn = 0
+    var n = 1
+    while (sn < k) {
+        var a = 1 / n
+        n = n + 1
+        sn += a
+    }
+    console.log(n)
+</script>
+<script id="ch0105/28">
+    var n = +prompt('请输入正整数n')
+    var str = ''
+    while (n > 0) {
+        var m = n % 10
+        str = str + m
+
+        n = (n - m) / 10
+    }
+    console.log(str)
+</script>
+<script id="ch0105/29">
+    var n = +prompt('请输入正整数n')
+
+    function reversal(n) {
+        var str = ''
+
+        if (n < 0) {
+            n = -n
+            str += '-'
+        }
+
+        while (n > 0) {
+            var m = n % 10
+
+            str = str + m
+            n = (n - m) / 10
+        }
+        return str
+
+
+    }
+    console.log(+reversal(n))
+</script>
 <script id="ch0105/30">
     let m = +prompt('请输入正整数m')
     let k = +prompt('请输入k的值')
@@ -660,6 +729,47 @@
     } else {
         console.log('NO')
     }
+</script>
+<script id="ch0105/32">
+    var n = +prompt('请输入正整数n')
+
+    function sum(n) {
+        var a = 1
+        var b = 2
+        var s = 0
+        for (var i = 1; i <= n; i++) {
+            s += b / a
+            var c = b
+            b = a + b
+            a = c
+        }
+        return s
+    }
+    console.log(sum(n).toFixed(4))
+</script>
+<script id="ch0105/33">
+    var n = +prompt('输入一个正整数n')
+
+    function sum(n) {
+
+        var s1 = 0
+        var s2 = 0
+        for (var i = 1; i <= n; i++) {
+
+            if (i % 2 == 0) {
+
+
+                s2 -= 1 / i
+            }
+            if (i % 2 != 0) {
+
+                s1 += 1 / i
+            }
+        }
+        return s1 + s2
+    }
+    console.log(sum(n).toFixed(4))
+    debugger
 </script>
 <script id="ch0105/34">
     let n = +prompt('请输入正整数n')
@@ -699,5 +809,43 @@
         console.log('YES')
     } else {
         console.log('NO')
+    }
+</script>
+<script id="narcissistics">
+    function count(z) {
+        var count = 0
+        do {
+            var m = z % 10
+            count++
+            z = (z - m) / 10
+        } while (z > 0)
+        return count
+    }
+
+    function prower(a, b) {
+        var r = 1
+        for (var i = 1; i <= b; i++) {
+            r = r * a
+        }
+        return r
+
+    }
+
+    function narcissistic(n) {
+        var y = n
+        var sum = 0
+        var v = count(n)
+        while (n > 0) {
+
+            var x = n % 10
+            sum += prower(x, v)
+            n = (n - x) / 10
+        }
+        return sum == y
+    }
+    for (var j = 100; j <= 10000; j++) {
+        if (narcissistic(j)) {
+            console.log(j)
+        }
     }
 </script>
