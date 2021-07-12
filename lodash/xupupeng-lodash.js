@@ -104,6 +104,18 @@ var xupupeng = function() {
         }
         return sum
     }
+    //concat(array,...values)创建一个新数组，将array与任何数组的值连接在一起
+    function concat(array, ...values) {
+        var arr = []
+        for (var i = 0; i < arguments.length; i++) {
+            if (Array.isArray(arguments[i])) {
+                arr.push(...arguments[i])
+            } else {
+                arr.push(arguments[i])
+            }
+        }
+        return arr
+    }
 
 
 
