@@ -53,6 +53,25 @@ var xupupeng = function() {
         }
         return arr
     }
+    //dropRight(array,[n = 1])创建一个切片数组，去除array尾部的n个元素
+    function dropRight(array, n = 1) {
+        var arr = []
+        for (var i = 0; i < array.length; i++) {
+            if (i <= array.length - n) {
+                arr.push(array[i])
+            }
+        }
+        return arr
+    }
+    //join(array,[separator=','])将array中的所有元素转换为由separator分割的字符串
+    function join(array, separator) {
+        var str = '' + array[0]
+
+        for (var i = 1; i < array.length; i++) {
+            str += separator + array[i]
+        }
+        return str
+    }
 
 
 
@@ -78,6 +97,8 @@ var xupupeng = function() {
         compact: compact,
         difference: difference,
         drop: drop,
+        dropRight: dropRight,
+        join: join,
 
     }
 }()
