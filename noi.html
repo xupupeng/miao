@@ -769,7 +769,6 @@
         return s1 + s2
     }
     console.log(sum(n).toFixed(4))
-    debugger
 </script>
 <script id="ch0105/34">
     let n = +prompt('请输入正整数n')
@@ -780,6 +779,63 @@
         sum += x //累计阶乘的和
     }
     console.log(sum)
+</script>
+<script id="ch0105/35">
+    var n = +prompt('请输入整数n')
+
+    function a(n) {
+        var sum = 0
+        var x = 1
+        for (var i = 1; i <= n; i++) {
+
+            x = x * (1 / i)
+            sum = sum + x
+        }
+        return sum + 1
+    }
+    console.log(a(n).toFixed(10))
+</script>
+<script id="ch0105/36">
+    var x = +prompt('请输入x')
+    var n = +prompt('请输入n')
+
+    function a(c, d) {
+        var y = 1
+        for (var i = 1; i <= d; i++) {
+
+            y *= c
+        }
+        return y
+    }
+    var sum = 0
+
+    function b(n) {
+        for (var j = 1; j <= n; j++) {
+            var q = a(x, j)
+            sum += q
+        }
+        return sum + 1
+    }
+    console.log(b(n).toFixed(2))
+</script>
+<script id="ch0105/39">
+    var n = +prompt('请输入正整数n')
+
+    function a(n) {
+        var sum1 = 0
+        var sum2 = 0
+        var sum3
+        for (var i = 1; i <= n; i++) {
+            if (i % 7 != 0 && i % 10 != 7 && (i - (i % 10)) / 10 !== 7) {
+                sum1 += i * i
+
+            }
+
+        }
+        return sum1
+
+    }
+    console.log(a(n))
 </script>
 <script id="narcissistic">
     let n = +prompt('请输入一个数')
