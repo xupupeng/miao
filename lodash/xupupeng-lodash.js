@@ -19,6 +19,30 @@ var xupupeng = function() {
         }
         return newArray
     }
+    //创建一个新数组，包含原数组中所有非假值元素，false,null,0,""和NaN。
+    function compact(array) {
+        var arr = []
+        for (var i = 0; i < array.length; i++) {
+            if (array[i]) {
+                arr.push(array[i])
+            }
+        }
+        return arr
+    }
+    //difference(array,[values])创建一个具有唯一array值的数组，每个值不包含
+    //在其他给定的数组中。
+    function difference(array, [values]) {
+        var arr = []
+        for (var i = 0; i < array.length; i++) {
+            for (var j = 0; j < values.length; j++) {
+                if (array[i] != values[j]) {
+                    arr.push(array[i])
+                }
+            }
+        }
+        return arr
+
+    }
 
 
 
@@ -41,5 +65,7 @@ var xupupeng = function() {
 
     return {
         chunk: chunk,
+        compact: compact,
+        difference: difference
     }
 }()
