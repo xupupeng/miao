@@ -43,6 +43,16 @@ var xupupeng = function() {
         return arr
 
     }
+    //drop(array,[n])创建一个切片数组，去除array前面的n个元素。
+    function drop(array, n = 1) {
+        var arr = []
+        for (var i = 0; i < array.length; i++) {
+            if (i >= n) {
+                arr.push(array[i])
+            }
+        }
+        return arr
+    }
 
 
 
@@ -66,6 +76,8 @@ var xupupeng = function() {
     return {
         chunk: chunk,
         compact: compact,
-        difference: difference
+        difference: difference,
+        drop: drop,
+
     }
 }()
