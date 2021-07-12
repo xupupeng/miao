@@ -31,13 +31,12 @@ var xupupeng = function() {
     }
     //difference(array,[values])创建一个具有唯一array值的数组，每个值不包含
     //在其他给定的数组中。
-    function difference(array, [values]) {
+    function difference(array, ...values) {
         var arr = []
+        var res = [].concat(...values)
         for (var i = 0; i < array.length; i++) {
-            for (var j = 0; j < values.length; j++) {
-                if (array[i] != values[j]) {
-                    arr.push(array[i])
-                }
+            if (res.indexOf(array[i]) == -1) {
+                arr.push(array[i])
             }
         }
         return arr
