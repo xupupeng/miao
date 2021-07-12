@@ -148,6 +148,7 @@ var xupupeng = function() {
         uniq: uniq,
         reverse: reverse,
         sum: sum,
+        concat: concat,
 
 
     }
