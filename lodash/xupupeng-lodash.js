@@ -57,7 +57,7 @@ var xupupeng = function() {
     function dropRight(array, n = 1) {
         var arr = []
         for (var i = 0; i < array.length; i++) {
-            if (i <= array.length - n) {
+            if (i < array.length - n) {
                 arr.push(array[i])
             }
         }
@@ -68,9 +68,19 @@ var xupupeng = function() {
         var str = '' + array[0]
 
         for (var i = 1; i < array.length; i++) {
-            str += separator + array[i]
+            str += String(separator) + array[i]
         }
         return str
+    }
+    //uniq(array)创建一个去重后的array数组副本。
+    function uniq(array) {
+        var arr = []
+        for (var i = 0; i < array.length; i++) {
+            if (arr.indexOf == -1) {
+                arr.push(array[i])
+            }
+        }
+        return arr
     }
 
 
@@ -99,6 +109,8 @@ var xupupeng = function() {
         drop: drop,
         dropRight: dropRight,
         join: join,
+        uniq: uniq,
+
 
     }
 }()
