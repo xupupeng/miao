@@ -115,6 +115,40 @@ var xupupeng = function() {
         }
         return arr
     }
+    //head(array)获取数组array的第一个元素
+    function head(array) {
+        return array[0]
+    }
+    //fill使用value值来填充替换array，从start位置开始到end位置结束，但不包含end位置
+    function fill(array, value, start = 0, end = array.length) {
+        for (var i = 0; i < array.length; i++) {
+            if (i >= start && i < end) {
+                array[i] = value
+            }
+        }
+        return array
+    }
+    //flattenDeep(array)将array递归为一维数组
+    function flatrenDeep(array) {
+        var arr = []
+        for (var i = 0; i < array.length; i++) {
+            var item = array[i]
+            if (Array.isArray(item)) {
+                item = flatrenDeep(item)
+                for (var j = 0; j < item.length; j++) {
+                    arr.push(item[j])
+                }
+            } else {
+                arr.push(item)
+            }
+        }
+        return arr
+    }
+    //last(array)获取array中的最后一个元素
+    function last(array) {
+        return array[array.length - 1]
+    }
+
 
 
 
@@ -148,6 +182,11 @@ var xupupeng = function() {
         reverse: reverse,
         sum: sum,
         concat: concat,
+        head: head,
+        fill: fill,
+        flatrenDeep: flatrenDeep,
+        last: last
+
 
 
     }
