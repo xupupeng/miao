@@ -76,12 +76,36 @@ var xupupeng = function() {
     function uniq(array) {
         var arr = []
         for (var i = 0; i < array.length; i++) {
-            if (arr.indexOf == -1) {
+            if (arr.indexOf(array[i]) == -1) {
                 arr.push(array[i])
             }
         }
         return arr
     }
+    //reverse(array)反转arra，使第一个元素变为最后一个元素，第二个元素变为倒数第二个元素
+    function reverse(array) {
+        var i = array.length - 1
+        var j = 0
+        while (j < i) {
+            var temp = array[i]
+            array[i] = array[j]
+            array[j] = temp
+            j++
+            i--
+        }
+        return array
+
+    }
+    //sum(array)计算array中值的和
+    function sum(array) {
+        var sum = 0
+        for (var i = 0; i < array.length; i++) {
+            sum += array[i]
+        }
+        return sum
+    }
+
+
 
 
 
@@ -110,6 +134,8 @@ var xupupeng = function() {
         dropRight: dropRight,
         join: join,
         uniq: uniq,
+        reverse: reverse,
+        sum: sum,
 
 
     }
