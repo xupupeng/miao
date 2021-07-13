@@ -148,7 +148,36 @@ var xupupeng = function() {
     function last(array) {
         return array[array.length - 1]
     }
+    //fromPairs(pairs)返回一个由键值对pairs构成的对象
+    function formPairs(pairs) {
+        var obj = {}
+        for (var i = 0; i < pairs.length; i++) {
+            var a = pairs[i]
+            obj[a[0]] = a[1]
+        }
+        return obj
+    }
+    //indexOf(array,value,[fromIndex=0])返回首次在数组array中被找到的索引值，如果为负值，从尾部进行
 
+    function indexOf(array, value, fromIndex = 0) {
+        if (Math.abs(fromIndex) > array.length) {
+            fromIndex = Math.ceil(fromIndex / array.length)
+        }
+        if (fromIndex < 0) {
+            fromIndex = -fromIndex
+            for (var i = array.length - 1; i >= 0; i--) {
+                if (i <= array.length - fromIndex && array[i] == value) {
+                    return i
+                }
+            }
+        }
+        for (var i = 0; i < array.length; i++) {
+            if (i <= fromIndex && array[i] == value) {
+                return i
+            }
+        }
+        return -1
+    }
 
 
 
@@ -185,7 +214,9 @@ var xupupeng = function() {
         head: head,
         fill: fill,
         flatrenDeep: flatrenDeep,
-        last: last
+        last: last,
+        formPairs: formPairs,
+        indexOf: indexOf,
 
 
 
