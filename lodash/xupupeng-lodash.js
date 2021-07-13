@@ -221,6 +221,95 @@ var xupupeng = function() {
         }
         return result
     }
+    //pull(array,[values])移除数组中values的值
+
+    function pull(array, ...value) {
+        var arr = []
+        for (var i = 0; i < array.length; i++) {
+            var ok = true
+            for (var j = 0; j < value.length; j++) {
+                if (array[i] == value[j]) {
+                    ok = false
+                }
+            }
+            if (ok) {
+                arr.push(array[i])
+            }
+        }
+        return arr
+    }
+    //lastIndexOf从右到左遍历元素。
+    function lastIndexOf(array, value, fromIndex = array.length - 1) {
+        for (var i = array.length; i >= 0; i--) {
+            if (i <= fromIndex && array[i] == value) {
+                return i
+            }
+        }
+        return -1
+    }
+    //add(augend,addend)相加这两个参数
+    function add(augend, addend) {
+        return augend + addend
+    }
+    //max(array)计算数组中的最大值
+    function max(array) {
+        if (!array) return undefined
+        var max = array[0]
+        for (var i = 0; i < array.length; i++) {
+            if (max < array[i]) {
+                max = array[i]
+            }
+        }
+        return max
+    }
+    //mean(array)计算数组的平均值
+    function mean(array) {
+        var sum = 0
+        for (var i = 0; i < array.length; i++) {
+            sum += array[i]
+            var m = sum / array.length
+        }
+        return m
+    }
+    //min(array)计算array中的最小值
+    function min(array) {
+        if (!array) return undefined
+        var min = array[0]
+        for (var i = 0; i < array.length; i++) {
+            if (min < array[i]) {
+                min = array[i]
+            }
+        }
+        return min
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -264,6 +353,13 @@ var xupupeng = function() {
         forEach: forEach,
         zip: zip,
         unzip: unzip,
+        pull: pull,
+        lastIndexOf: lastIndexOf,
+        add: add,
+        max: max,
+        mean: mean,
+        min: min,
+
 
 
 
