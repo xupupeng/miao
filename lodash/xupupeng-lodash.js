@@ -172,13 +172,12 @@ var xupupeng = function() {
             }
         }
         for (var i = 0; i < array.length; i++) {
-            if (i <= fromIndex && array[i] == value) {
+            if (i >= fromIndex && array[i] == value) {
                 return i
             }
         }
         return -1
     }
-
 
 
 
