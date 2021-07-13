@@ -149,7 +149,7 @@ var xupupeng = function() {
         return array[array.length - 1]
     }
     //fromPairs(pairs)返回一个由键值对pairs构成的对象
-    function formPairs(pairs) {
+    function fromPairs(pairs) {
         var obj = {}
         for (var i = 0; i < pairs.length; i++) {
             var a = pairs[i]
@@ -178,6 +178,50 @@ var xupupeng = function() {
         }
         return -1
     }
+    //initial()获取数组中除了最后一个元素之外的所有元素
+    function initial(array) {
+        array.pop()
+        return array
+    }
+    //forEach 调用iterattee函数遍历集合中的元素
+    function forEach(collection, iteratee) {
+        for (var i in collection) {
+            iteratee(collection[i], i, collection)
+        }
+        return collection
+    }
+    //zip 创建一个打包所有元素后的数组，第一个元素包含所有提供数组的第一个元素
+    //第二个包含所以提供数组的第二个元素，以此类推
+    function zip(...array) {
+        var result = []
+        var a = arguments[0].length
+        var b = 0
+        while (a) {
+            var arr = []
+            for (var i = 0; i < arguments.length; i++) {
+                arr.push(arguments[i][b])
+            }
+            a--
+            b++
+            result.push(arr)
+        }
+        return result
+
+    }
+    //unzip它接收一个打包后的数组并还原打包前的状态
+    function unzip(array) {
+        var result = []
+        for (var i = 0; i < array[0].length; i++) {
+            var arr = []
+            for (var j = 0; j < array.length; j++) {
+                arr.push(array[j][i])
+            }
+            result.push(arr)
+
+        }
+        return result
+    }
+
 
 
 
@@ -214,8 +258,12 @@ var xupupeng = function() {
         fill: fill,
         flatrenDeep: flatrenDeep,
         last: last,
-        formPairs: formPairs,
+        fromPairs: fromPairs,
         indexOf: indexOf,
+        initial: initial,
+        forEach: forEach,
+        zip: zip,
+        unzip: unzip,
 
 
 
