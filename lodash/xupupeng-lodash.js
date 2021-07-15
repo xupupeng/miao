@@ -282,9 +282,51 @@ var xupupeng = function() {
         }
         return min
     }
-
-
-
+    // subtract(minuend,subtrahend)两个数相减。
+    function subtract(minuend, subtrahend) {
+        return minuend - subtrahend
+    }
+    // pullAll(array,values)移除values的值在数组中
+    function pullAll(array, values) {
+        for (var i = 0; i < array.length; i++) {
+            for (var j = 0; j < values.length; j++) {
+                if (array[i] == values[j]) {
+                    array.splice(i, 1)
+                }
+            }
+        }
+        return array
+    }
+    //flatten向上一级展平数组嵌套
+    function flatten(array) {
+        var result = []
+        for (var i = 0; i < array.length; i++) {
+            if (Array.isArray(array[i])) {
+                for (var j = 0; j < array[i].length; j++) {
+                    result.push(array[i][j])
+                }
+            } else {
+                result.push(array[i])
+            }
+        }
+        return result
+    }
+    //flattenDeep(array)递归展平数组
+    function flattenDeep(array) {
+        var result = []
+        for (var i = 0; i < array.length; i++) {
+            var item = array[i]
+            if (Array.isArray(item)) {
+                item = flattenDeep(item)
+                for (var j = 0; j < item.length; j++) {
+                    result.push(item[j])
+                }
+            } else {
+                result.push(item)
+            }
+        }
+        return result
+    }
 
 
 
@@ -359,6 +401,10 @@ var xupupeng = function() {
         max: max,
         mean: mean,
         min: min,
+        subtract: subtract,
+        pullAll: pullAll,
+        flatten: flatten,
+        flattenDeep: flattenDeep,
 
 
 
