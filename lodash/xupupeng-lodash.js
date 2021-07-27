@@ -273,7 +273,9 @@ var xupupeng = function() {
     }
     //min(array)计算array中的最小值
     function min(array) {
-        if (!array) return undefined
+        if (array.length === 0) {
+            return undefined
+        }
         var min = array[0]
         for (var i = 0; i < array.length; i++) {
             if (min < array[i]) {
@@ -288,10 +290,10 @@ var xupupeng = function() {
     }
     // pullAll(array,values)移除values的值在数组中
     function pullAll(array, values) {
-        for (var i = 0; i < array.length; i++) {
-            for (var j = 0; j < values.length; j++) {
-                if (array[i] == values[j]) {
-                    array.splice(i, 1)
+        for (var i = 0; i < values.length; i++) {
+            for (var j = 0; j < array.length; j++) {
+                if (values[i] == array[j]) {
+                    array.splice(j, 1)
                 }
             }
         }
@@ -326,6 +328,61 @@ var xupupeng = function() {
             }
         }
         return result
+    }
+    //slice(array,start,end),创建一个裁剪后的数组，从start到end的位置但不包括end本身的位置
+    function slice(array, start = 0, end = array.length) {
+        var result = []
+        for (var i = start; i < end; i++) {
+            result.push(array[i])
+        }
+        return result
+    }
+    //property(path)创建一个返回给定对象的path的值的函数
+    //传入什么属性名，它返回的函数就用来获取这个对象的属性名
+    function property(path) {
+        return function(obj) {
+            return obj[path]
+        }
+    }
+    //创建一个深入比较的方法来比较给定的对象和source对象。
+    //如果给定的对象拥有相同的属性值返回true。否则false
+    function matches(source) {
+        return function(obj) {
+            for (let key in obj) {
+                if (source[key] != obj[key]) {
+                    return false
+                }
+            }
+            return true
+        }
+    }
+    //matcesProperty创建一个深比较的方法来比较给定对象的path值
+    //是否是srcValue。如果是返回TRUE，否则返回false。
+    function matchesProperty(ary) {
+        let m = ary[0]
+        let n = ary[1]
+        return function(obj) {
+            return obj[m] == n
+        }
+
+    }
+    //map 创建一个经过后面处理的集合中每一个元素的结果数组。返回一个新数组
+    function map(ary, mapper) {
+        if (typeof mapper == 'string') {
+            mapper = property(mapper)
+        }
+        if (Array.isArray(mapper)) {
+            mapper = matchesProperty(...mapper)
+        }
+        if (typeof mapper == 'object') {
+            mapper = matches(...mapper)
+        }
+
+        const res = []
+        for (let i in ary) {
+            res.push(mapper(ary[i], i, ary))
+        }
+        return res
     }
 
 
@@ -405,6 +462,11 @@ var xupupeng = function() {
         pullAll: pullAll,
         flatten: flatten,
         flattenDeep: flattenDeep,
+        slice: slice,
+        property: property,
+        matches: matches,
+        matchesProperty: matchesProperty,
+
 
 
 
