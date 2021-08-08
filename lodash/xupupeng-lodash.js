@@ -389,7 +389,7 @@ var xupupeng = function() {
         i = 0
         return parseValue()
 
-        function ParseValue() {
+        function parseValue() {
             if (str[i] == 't') {
                 return parseTrue()
             }
@@ -473,20 +473,6 @@ var xupupeng = function() {
             }
             return Number(result)
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
 
