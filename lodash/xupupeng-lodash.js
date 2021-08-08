@@ -468,11 +468,44 @@ var xupupeng = function() {
 
         function parseNumber() {
             let result = ''
-            if (str[i] >= '0' && str[i] <= '9') {
+            while (str[i] >= '0' && str[i] <= '9') {
                 result += str[i++]
             }
             return Number(result)
         }
+    }
+    //toPath 创建value为属性路径的数组
+    function toPath(value) {
+        let reg = new RegExp(/\w/g)
+        return value.match(reg)
+
+    }
+    //matches 创建一个深比较的方法来比较给定对象和source对象。
+    //如果给定的对象拥有相同的属性值返回true，否则返回false
+    function matches(source) {
+        return function(object) {
+            for (let key in source) {
+                if (source[key] != object[key]) {
+                    return false
+                }
+            }
+            return true
+        }
+    }
+    //identity(value)这个方法返回首个提供的参数
+    function identity(value) {
+        return value
+    }
+    //创建一个返回给定对象的path的值的函数
+    //返回这个函数接收的对象，返回这个对象传入的路径为属性的属性值
+    function property(path) {
+        return function(object) {
+            return object[path]
+        }
+    }
+    //repeat，重复N次的字符串
+    function repeat(string = '', n = 0) {
+        for (let i = 0; i <= n; i++)
     }
 
 
@@ -559,6 +592,10 @@ var xupupeng = function() {
         matches: matches,
         matchesProperty: matchesProperty,
         parseJson: parseJson,
+        toPath: toPath,
+        matches: matches,
+        identity: identity,
+        property: property,
 
 
 
