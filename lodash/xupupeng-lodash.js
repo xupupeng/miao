@@ -384,6 +384,112 @@ var xupupeng = function() {
         }
         return res
     }
+    //解析JSON
+    function parseJson(str) {
+        i = 0
+        return parseValue()
+
+        function ParseValue() {
+            if (str[i] == 't') {
+                return parseTrue()
+            }
+            if (str[i] == 'f') {
+                return parseFalse()
+            }
+            if (str[i] == 'n') {
+                return parseNull()
+            }
+            if (str[i] == '"') {
+                return parseString()
+            }
+            if (str[i] == '[') {
+                return parseArray()
+            }
+            if (str[i] == '{') {
+                return parseObject()
+            }
+            return parseNumber()
+        }
+
+        function parseTrue() {
+            i += 4
+            return true
+        }
+
+        function parseFalse() {
+            i += 5
+            return false
+        }
+
+        function parseNull() {
+            i += 4
+            return null
+        }
+
+        function parseString() {
+            i++
+            let result = ''
+            while (str[i] != '"') {
+                result += str[i++]
+            }
+            i++
+            return result
+        }
+
+        function parseArray() {
+            i++
+            const result = []
+            while (str[i] != ']') {
+                let value = parseValue()
+                result.push(value)
+                if (str[i] == ',') {
+                    i++
+                }
+            }
+            i++
+            return result
+        }
+
+        function parseObject() {
+            i++
+            const result = {}
+            while (str[i] != '}') {
+                let key = parseString()
+                i++
+                let value = parseValue()
+                result[key] = value
+                if (str[i] == ',') {
+                    i++
+                }
+            }
+            i++
+            return result
+        }
+
+        function parseNumber() {
+            let result = ''
+            if (str[i] >= '0' && str[i] <= '9') {
+                result += str[i++]
+            }
+            return Number(result)
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
 
 
 
@@ -466,7 +572,7 @@ var xupupeng = function() {
         property: property,
         matches: matches,
         matchesProperty: matchesProperty,
-
+        parseJson: parseJson,
 
 
 
