@@ -504,9 +504,6 @@ var xupupeng = function() {
         }
     }
     //repeat，重复N次的字符串
-    function repeat(string = '', n = 0) {
-        for (let i = 0; i <= n; i++)
-    }
 
 
 
