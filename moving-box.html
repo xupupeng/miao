@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            border-radius: 100px;
+        }
+        
+        #blue {
+            background-color: blue;
+        }
+        
+        #pink {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="blue" style="right: 10px;bottom: 10px;;"></div>
+    <div id="pink" style="left: 10px; top: 10px;"></div>
+    <script>
+        var pink = document.querySelector('#pink')
+        var blue = document.querySelector('#blue')
+        var vx = 1
+        var vy = 1
+        var upPress = false
+        var downPress = false
+        var leftPress = false
+        var rightPress = false
+
+        document.addEventListener('keydown', function(e) {
+
+            if (e.key == 'ArrowRight') {
+                rightPress = true
+                vx = 1
+
+            }
+            if (e.key == 'ArrowLeft') {
+                leftPress = true
+                vx = -1
+            }
+            if (e.key == 'ArrowDown') {
+                downPress = true
+                vy = 1
+            }
+            if (e.key == 'ArrowUp') {
+                upPress = true
+                vy = -1
+            }
+            if (e.keyCode == 87) {
+                upPress = true
+                vy = -1
+            }
+            if (e.keyCode == 83) {
+                downPress = true
+                vy = 1
+            }
+            if (e.keyCode == 65) {
+                leftPress = true
+                vx = -1
+
+            }
+            if (e.keyCode == 68) {
+                rightPress = true
+                vx = 1
+
+            }
+        })
+        document.addEventListener('keyup', function(e) {
+
+            if (e.key == 'ArrowRight') {
+                rightPress = false
+                if (leftPress) {
+                    vx = -1
+                } else {
+                    vx = 0
+                }
+
+            }
+            if (e.key == 'ArrowLeft') {
+                leftPress = false
+                if (rightPress) {
+                    vx = 1
+                } else {
+                    vx = 0
+                }
+            }
+            if (e.key == 'ArrowDown') {
+                downPress = false
+                if (upPress) {
+                    vy = -1
+                } else {
+                    vy = 0
+                }
+            }
+            if (e.key == 'ArrowUp') {
+                upPress = false
+                if (downPress) {
+                    vy = 1
+                } else {
+                    vy = 0
+                }
+            }
+            if (e.keyCode == 87) {
+                upPress = false
+                if (downPress) {
+                    vy = 1
+                } else {
+                    vy = 0
+                }
+            }
+            if (e.keyCode == 83) {
+                downPress = false
+                if (upPress) {
+                    vy = -1
+                } else {
+                    vy = 0
+                }
+            }
+            if (e.keyCode == 65) {
+                leftPress = false
+                if (rightPress) {
+                    vx = 1
+                } else {
+                    vx = 0
+                }
+
+            }
+            if (e.keyCode == 68) {
+                rightPress = false
+                if (leftPress) {
+                    vx = -1
+                } else {
+                    vx = 0
+                }
+
+            }
+        })
+        var lastTime = 0
+        requestAnimationFrame(function m(time) {
+            var times = time - lastTime
+            lastTime = time
+            pink.style.left = parseFloat(pink.style.left) + vx * times * 0.2 + 'px'
+            pink.style.top = parseFloat(pink.style.top) + vy * times * 0.2 + 'px'
+            blue.style.right = parseFloat(blue.style.right) + vx * times * 0.2 + 'px'
+            blue.style.bottom = parseFloat(blue.style.bottoms) + vy * times * 0.2 + 'px'
+
+            requestAnimationFrame(m)
+        })
+    </script>
+</body>
+
+</html>
