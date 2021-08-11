@@ -504,7 +504,13 @@ var xupupeng = function() {
         }
     }
     //repeat，重复N次的字符串
-
+    function repeat(String = '', n = 0) {
+        let result = ''
+        for (let i = 0; i < n; i++) {
+            result += String
+        }
+        return result
+    }
 
 
 
@@ -593,6 +599,7 @@ var xupupeng = function() {
         matches: matches,
         identity: identity,
         property: property,
+        repeat: repeat,
 
 
 

@@ -25,134 +25,143 @@
 </head>
 
 <body>
-    <div id="blue" style="right: 10px;bottom: 10px;;"></div>
+    <div id="blue" style="right: 10px;top: 10px;;"></div>
     <div id="pink" style="left: 10px; top: 10px;"></div>
     <script>
         var pink = document.querySelector('#pink')
         var blue = document.querySelector('#blue')
-        var vx = 1
-        var vy = 1
-        var upPress = false
-        var downPress = false
-        var leftPress = false
-        var rightPress = false
-
+        var start1 = {
+            vx: 0,
+            vy: 0,
+            upPress: false,
+            downPress: false,
+            leftPress: false,
+            rightPress: false
+        }
+        var start2 = {
+            vx: 0,
+            vy: 0,
+            upPress: false,
+            downPress: false,
+            leftPress: false,
+            rightPress: false
+        }
         document.addEventListener('keydown', function(e) {
 
             if (e.key == 'ArrowRight') {
-                rightPress = true
-                vx = 1
+                start1.rightPress = true
+                start1.vx = 1
 
             }
             if (e.key == 'ArrowLeft') {
-                leftPress = true
-                vx = -1
+                start1.leftPress = true
+                start1.vx = -1
             }
             if (e.key == 'ArrowDown') {
-                downPress = true
-                vy = 1
+                start1.downPress = true
+                start1.vy = 1
             }
             if (e.key == 'ArrowUp') {
-                upPress = true
-                vy = -1
+                start1.upPress = true
+                start1.vy = -1
             }
             if (e.keyCode == 87) {
-                upPress = true
-                vy = -1
+                start2.upPress = true
+                start2.vy = -1
             }
             if (e.keyCode == 83) {
-                downPress = true
-                vy = 1
+                start2.downPress = true
+                start2.vy = 1
             }
             if (e.keyCode == 65) {
-                leftPress = true
-                vx = -1
+                start2.leftPress = true
+                start2.vx = 1
 
             }
             if (e.keyCode == 68) {
-                rightPress = true
-                vx = 1
+                start2.rightPress = true
+                start2.vx = -1
 
             }
         })
         document.addEventListener('keyup', function(e) {
 
             if (e.key == 'ArrowRight') {
-                rightPress = false
-                if (leftPress) {
-                    vx = -1
+                start1.rightPress = false
+                if (start1.leftPress) {
+                    start1.vx = -1
                 } else {
-                    vx = 0
+                    start1.vx = 0
                 }
 
             }
             if (e.key == 'ArrowLeft') {
-                leftPress = false
-                if (rightPress) {
-                    vx = 1
+                start1.leftPress = false
+                if (start1.rightPress) {
+                    start1.vx = 1
                 } else {
-                    vx = 0
+                    start1.vx = 0
                 }
             }
             if (e.key == 'ArrowDown') {
-                downPress = false
-                if (upPress) {
-                    vy = -1
+                start1.downPress = false
+                if (start1.upPress) {
+                    start1.vy = -1
                 } else {
-                    vy = 0
+                    start1.vy = 0
                 }
             }
             if (e.key == 'ArrowUp') {
-                upPress = false
-                if (downPress) {
-                    vy = 1
+                start1.upPress = false
+                if (start1.downPress) {
+                    start1.vy = 1
                 } else {
-                    vy = 0
+                    start1.vy = 0
                 }
             }
             if (e.keyCode == 87) {
-                upPress = false
-                if (downPress) {
-                    vy = 1
+                start2.upPress = false
+                if (start2.downPress) {
+                    start2.vy = 1
                 } else {
-                    vy = 0
+                    start2.vy = 0
                 }
             }
             if (e.keyCode == 83) {
-                downPress = false
-                if (upPress) {
-                    vy = -1
+                start2.downPress = false
+                if (start2.upPress) {
+                    start2.vy = -1
                 } else {
-                    vy = 0
+                    start2.vy = 0
                 }
             }
             if (e.keyCode == 65) {
-                leftPress = false
-                if (rightPress) {
-                    vx = 1
+                start2.leftPress = false
+                if (start2.rightPress) {
+                    start2.vx = -1
                 } else {
-                    vx = 0
+                    start2.vx = 0
                 }
 
             }
             if (e.keyCode == 68) {
-                rightPress = false
-                if (leftPress) {
-                    vx = -1
+                start2.rightPress = false
+                if (start2.leftPress) {
+                    start2.vx = 1
                 } else {
-                    vx = 0
+                    start2.vx = 0
                 }
 
             }
         })
-        var lastTime = 0
+        var lastTime = null
         requestAnimationFrame(function m(time) {
             var times = time - lastTime
             lastTime = time
-            pink.style.left = parseFloat(pink.style.left) + vx * times * 0.2 + 'px'
-            pink.style.top = parseFloat(pink.style.top) + vy * times * 0.2 + 'px'
-            blue.style.right = parseFloat(blue.style.right) + vx * times * 0.2 + 'px'
-            blue.style.bottom = parseFloat(blue.style.bottoms) + vy * times * 0.2 + 'px'
+            pink.style.left = parseFloat(pink.style.left) + start1.vx * times * 0.2 + 'px'
+            pink.style.top = parseFloat(pink.style.top) + start1.vy * times * 0.2 + 'px'
+            blue.style.right = parseFloat(blue.style.right) + start2.vx * times * 0.2 + 'px'
+            blue.style.top = parseFloat(blue.style.top) + start2.vy * times * 0.2 + 'px'
 
             requestAnimationFrame(m)
         })
