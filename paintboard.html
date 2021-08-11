@@ -22,7 +22,9 @@
 
 <body>
 
-    请选择颜色<input type="color" id="colorInput">
+    请选择颜色<input type="color" id="colorInput"> 请选择粗细
+    <input type="range" id="widthInput" min="1" max="10" value="5">
+    <span class="rangeValue">5</span>
     <svg></svg>
 
     <script>
@@ -31,11 +33,14 @@
         var lastpos = null
 
         document.addEventListener('mousedown', function(e) {
+
+            var g = document.createElementNS("http://www.w3.org/2000/svg", 'g')
+
+            svg.append(g)
+
             function drawDot(e) {
                 var pos = mousePos(svg)
-
                 var line = document.createElementNS("http://www.w3.org/2000/svg", 'line')
-
                 if (lastpos == null) {
                     line.setAttribute('x1', pos.x)
                     line.setAttribute('y1', pos.y)
@@ -47,11 +52,11 @@
                 line.setAttribute('x2', pos.x)
                 line.setAttribute('y2', pos.y)
                 line.setAttribute('stroke', colorInput.value)
-                line.setAttribute('stroke-width', '2')
-
+                line.setAttribute('stroke-width', widthInput.value)
+                line.setAttribute('stroke-linecap', 'round')
                 lastpos = pos
 
-                svg.append(line)
+                g.append(line)
             }
             document.addEventListener('mousemove', drawDot)
             document.addEventListener('mouseup', function once() {
@@ -70,6 +75,18 @@
                 y: window.event.clientY - box.y,
             }
         }
+
+        var widthInput = document.querySelector('#widthInput')
+        var span = document.querySelector('.rangeValue')
+        widthInput.addEventListener('input', function(e) {
+            span.innerHTML = widthInput.value
+        })
+
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key == 'z') {
+                svg.removeChild(svg.lastElementChild)
+            }
+        })
     </script>
 </body>
 
