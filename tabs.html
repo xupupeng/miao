@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            width: 600px;
+            height: 50px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: grey;
+        }
+        
+        li {
+            float: left;
+            margin-left: 50px;
+            line-height: 50px;
+            cursor: pointer;
+        }
+        
+        .bgc {
+            background-color: hotpink;
+            color: white;
+        }
+        
+        div {
+            display: none;
+        }
+        
+        section {
+            width: 600px;
+            font-weight: 700;
+            text-indent: 36px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <ul>
+        <li class="bgc">lorem1</li>
+        <li>lorem2</li>
+        <li>lorem3</li>
+        <li>lorem4</li>
+        <li>lorem5</li>
+    </ul>
+    <section>
+        <div style="display: block;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio et iure soluta dignissimos temporibus doloribus asperiores voluptatem ipsum adipisci quis delectus voluptates esse fuga aut, obcaecati neque cupiditate, voluptatibus nisi?</div>
+        <div>Distinctio ut facere ipsum repellendus cumque aspernatur odio sunt aliquid ea saepe! Repellendus magni at architecto deserunt tenetur numquam alias nesciunt eum perspiciatis reprehenderit modi, quo ea dignissimos, harum quis?</div>
+        <div>Quaerat ex nostrum placeat id commodi dolorum numquam eius quo, impedit molestias maiores, amet laborum perspiciatis modi? Quis, praesentium, laboriosam reiciendis veniam, nostrum deleniti distinctio blanditiis ea dolores fugiat officia.</div>
+        <div>Eveniet amet maiores nobis iusto cumque perspiciatis voluptatem illum soluta nihil dignissimos! Commodi, asperiores voluptate distinctio necessitatibus est maiores, ipsam, perferendis exercitationem ab ea eveniet animi recusandae nemo illum molestias?</div>
+        <div>Atque quo sunt facilis veniam quis! Architecto excepturi nesciunt distinctio dolorem fuga adipisci ad doloremque recusandae voluptate repellendus accusantium dolorum in, non minus consequatur, veniam, cupiditate id impedit facere? Nemo.</div>
+    </section>
+    <script>
+        let lis = document.querySelectorAll('li')
+        let divs = document.querySelectorAll('div')
+
+        for (let i = 0; i < lis.length; i++) {
+            lis[i].setAttribute('index', i)
+            lis[i].onclick = function() {
+                for (let i = 0; i < lis.length; i++) {
+                    lis[i].className = ''
+                }
+                this.className = 'bgc'
+                let index = this.getAttribute('index')
+                for (let j = 0; j < divs.length; j++) {
+                    divs[j].style.display = 'none'
+                }
+                divs[index].style.display = 'block'
+            }
+
+        }
+    </script>
+</body>
+
+</html>
