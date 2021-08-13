@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .shadow {
+            width: 6px;
+            height: 6px;
+            border-radius: 3px;
+            background-color: greenyellow;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        let i = 0
+        window.addEventListener('mousemove', function(e) {
+            i++
+            if (i % 2 == 1) {
+
+                return
+            }
+            let span = document.createElement('span')
+            span.classList.add('shadow')
+
+            span.style.left = e.clientX + 'px'
+            span.style.top = e.clientY + 'px'
+            document.body.append(span)
+            setTimeout(function() {
+                document.body.removeChild(span)
+            }, 150)
+
+        })
+    </script>
+
+</body>
+
+</html>
