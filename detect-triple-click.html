@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let time1 = 0
+        let time2 = 0
+        let time3 = 0
+        window.addEventListener('click', function() {
+            let time = Date.now()
+            if (time2 - time1 > 600 && time - time2 < 600) {
+                let click = document.createElement('div')
+                click.textContent = 'triple-click'
+                let body = document.querySelector('body')
+                body.append(click)
+            }
+            time1 = time2
+            time2 = time3
+            time3 = time
+        })
+    </script>
+</body>
+
+</html>
