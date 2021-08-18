@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>autocompletion</title>
+    <style>
+        input {
+            border: 3px solid;
+            width: 300px;
+            height: 50px;
+            font-size: 24px;
+        }
+        
+        li {
+            list-style: none;
+            font-size: 36px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" name="" id="">
+    <ul id="association" style="padding: 0;"></ul>
+    <script>
+        let ary = []
+        for (let key in window) {
+            ary.push(key)
+        }
+        let input = document.querySelector('input')
+        let ul = document.querySelector('#association')
+        input.addEventListener('input', () => {
+            let content = input.value
+            ul.innerHTML = ''
+            let i = 0
+            ary.forEach(it => {
+                i++
+                if (it.indexOf(content) === 0) {
+                    let lis = document.createElement('li')
+                    lis.innerHTML = i + '. ' + it
+
+                    ul.append(lis)
+                }
+                if (input.value == '') {
+                    ul.innerHTML = ''
+                }
+            })
+        })
+        ul.addEventListener('click', e => {
+            let reg = /[0-9]*./
+
+            input.value = e.target.innerHTML.replace(reg, '')
+            ul.textContent = ''
+        })
+    </script>
+</body>
+
+</html>
