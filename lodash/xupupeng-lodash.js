@@ -329,6 +329,25 @@ var xupupeng = function() {
         }
         return result
     }
+    //flattenDeepth根据deepth递归展平数组的层级
+    function flattenDepth(array, depth = 1) {
+        const result = []
+        if (depth == 0) {
+            return array
+        }
+        for (let i = 0; i < array.length; i++) {
+            let item = array[i]
+            if (Array.isArray(item)) {
+                item = flattenDepth(item, depth - 1)
+                for (let j = 0; j < item.length; j++) {
+                    result.push(item[j])
+                }
+            } else {
+                result.push(item)
+            }
+        }
+        return result
+    }
     //slice(array,start,end),创建一个裁剪后的数组，从start到end的位置但不包括end本身的位置
     function slice(array, start = 0, end = array.length) {
         var result = []
@@ -511,6 +530,15 @@ var xupupeng = function() {
         }
         return result
     }
+    //nth 返回索引，有负数
+    function nth(array, index) {
+        if (index < 0) {
+            return array[index + array.length]
+        } else {
+            return array[index]
+        }
+    }
+
 
 
 
@@ -573,6 +601,7 @@ var xupupeng = function() {
         head: head,
         fill: fill,
         flatrenDeep: flatrenDeep,
+        flattenDepth: flattenDepth,
         last: last,
         fromPairs: fromPairs,
         indexOf: indexOf,
@@ -600,7 +629,7 @@ var xupupeng = function() {
         identity: identity,
         property: property,
         repeat: repeat,
-
+        nth: nth,
 
 
 
