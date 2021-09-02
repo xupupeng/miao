@@ -538,7 +538,26 @@ var xupupeng = function() {
             return array[index]
         }
     }
+    //intersection([arrays])创建一个包含所有使用SameValueZero进行等值比较后筛选的唯一值数组
 
+    function intersection(array, ...arrays) {
+        const res = new Set()
+        let val
+
+        for (let i = 0; i < arrays.length; i++) {
+            for (let j = 0; j < array.length; j++) {
+                if (arrays[i].indexOf(array[j]) == -1) {
+                    val = array[j]
+                } else {
+                    if (val != array[j]) {
+                        res.add(array[j])
+                    }
+
+                }
+            }
+        }
+        return Array.from(res)
+    }
 
 
 
@@ -630,6 +649,7 @@ var xupupeng = function() {
         property: property,
         repeat: repeat,
         nth: nth,
+        intersection: intersection,
 
 
 
