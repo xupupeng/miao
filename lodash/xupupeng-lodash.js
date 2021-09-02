@@ -558,8 +558,41 @@ var xupupeng = function() {
         }
         return Array.from(res)
     }
-
-
+    //keyBy,创建一个对象的组成，key是经过iteratee处理的结果，value是产生key的元素，iteratee会传入一个参数（value）
+    function keyBy(collection, iteratee) {
+        const obj = {}
+        if (typeof iteratee == 'function') {
+            collection.forEach(it => {
+                obj[iteratee(it)] = it
+            })
+        } else {
+            collection.forEach(it => {
+                obj[it[iteratee]] = it
+            })
+        }
+        return obj
+    }
+    //sortedIndex(array,value) 使用二进制的方式检索来决定value应该插在数组中的位置，它的index应该尽可能的小以保证数组的排序。
+    function sortedIndex(array, value) {
+        let left = 0
+        let right = array.length - 1
+        if (array[right] < value) {
+            return array.length
+        }
+        if (array[left] > value) {
+            return 0
+        }
+        while (left < right) {
+            let mid = (left + right) >> 1
+            if (array[mid] >= value) {
+                right = mid
+            }
+            if (array[mid] < value) {
+                left = mid + 1
+            }
+        }
+        return left
+    }
 
 
 
@@ -650,8 +683,8 @@ var xupupeng = function() {
         repeat: repeat,
         nth: nth,
         intersection: intersection,
-
-
+        keyBy: keyBy,
+        sortedIndex: sortedIndex,
 
     }
 }()
