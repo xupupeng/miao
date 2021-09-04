@@ -593,12 +593,44 @@ var xupupeng = function() {
         }
         return left
     }
+    // sortedIndexBy(array,value,iteratee),它除了接受一个iteratee调用每个数组和值来计算排序，iteratee会传入一个参数value
+    function sortedIndexBy(array, value, iteratee) {
+        if (typeof iteratee == 'string') {
+            return sortedIndex(array.map(it => it(iteratee)), value[iteratee])
+        }
+        if (typeof iteratee == 'function') {
+            return sortedIndex(array.map(it => iteratee(it)), iteratee(value))
+        }
 
+    }
 
-
-
-
-
+    //sortedIndexOf(array,value),这个方法类似于indexOf，除了他是执行二进制来检索已经排序的数组
+    function sortedIndexOf(array, value) {
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] >= value) {
+                return i
+            }
+        }
+        return -1
+    }
+    //sortedLastIndex(array,value)这个方法类似sortedIndex，除了它返回在value中尽可能大的index位置
+    function sortedLastIndex(array, value) {
+        for (let i = array.length - 1; i >= 0; i--) {
+            if (array[i] <= value) {
+                return i + 1
+            }
+        }
+        return 0
+    }
+    //sortedLastIndexBy(array,value,iteratee)这个方法类似于sortedLastIndex，除了它接受一个iteratee调用每一数组和值来计算排序，iteratee会传入一个参数（value）
+    function sortedLastIndexBy(array, value, iteratee) {
+        if (typeof iteratee == 'string') {
+            return sortedLastIndex(array.map(it => it[iteratee]), value[iteratee])
+        }
+        if (typeof iteratee == 'function') {
+            return sortedLastIndex(array.map(it => iteratee(it)), iteratee(value))
+        }
+    }
 
 
 
@@ -685,6 +717,9 @@ var xupupeng = function() {
         intersection: intersection,
         keyBy: keyBy,
         sortedIndex: sortedIndex,
-
+        sortedIndexBy: sortedIndexBy,
+        sortedIndexOf: sortedIndexOf,
+        sortedLastIndex: sortedLastIndex,
+        sortedLastIndexBy: sortedLastIndexBy,
     }
 }()
