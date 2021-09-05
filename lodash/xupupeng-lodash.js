@@ -596,7 +596,7 @@ var xupupeng = function() {
     // sortedIndexBy(array,value,iteratee),它除了接受一个iteratee调用每个数组和值来计算排序，iteratee会传入一个参数value
     function sortedIndexBy(array, value, iteratee) {
         if (typeof iteratee == 'string') {
-            return sortedIndex(array.map(it => it(iteratee)), value[iteratee])
+            return sortedIndex(array.map(it => it[iteratee]), value[iteratee])
         }
         if (typeof iteratee == 'function') {
             return sortedIndex(array.map(it => iteratee(it)), iteratee(value))
@@ -607,7 +607,7 @@ var xupupeng = function() {
     //sortedIndexOf(array,value),这个方法类似于indexOf，除了他是执行二进制来检索已经排序的数组
     function sortedIndexOf(array, value) {
         for (let i = 0; i < array.length; i++) {
-            if (array[i] >= value) {
+            if (array[i] = value) {
                 return i
             }
         }
@@ -631,10 +631,66 @@ var xupupeng = function() {
             return sortedLastIndex(array.map(it => iteratee(it)), iteratee(value))
         }
     }
-
-
-
-
+    //sortedLastIndexOf(array,value)这个方法类似indexof，除了他是执行二进制来检索已经排序的数组的
+    function sortedLastIndexOf(array, value) {
+        for (let i = array.length - 1; i >= 0; i--) {
+            if (array[i] == value) {
+                return i
+            }
+        }
+        return -1
+    }
+    //sortedUniq(array)排序并优化数组，返回一个不重复的数组
+    function sortedUniq(array) {
+        let result = []
+        for (let i = 0; i < array.length; i++) {
+            if (!result.includes(array[i])) {
+                result.push(array[i])
+            }
+        }
+        return result.sort((a, b) => a - b)
+    }
+    //sortedUniqBy(array,iteratee)除了它接受一个iteratee调用每一个数组和值来排序并优化数组
+    function sortedUniqBy(array, iteratee) {
+        const ary = []
+        const result = []
+        for (let i = 0; i < array.length; i++) {
+            let number = iteratee(array[i])
+            if (ary.indexOf(number) == -1) {
+                ary.push(number)
+                result.push(array[i])
+            }
+        }
+        return result
+    }
+    //tail(array)获取数组中除了第一个元素的剩余数组
+    function tail(array) {
+        const result = []
+        for (let i = 1; i < array.length; i++) {
+            result.push(array[i])
+        }
+        return result
+    }
+    //take(array,n=1)从数组的起始元素开始提取N个元素
+    function take(array, n = 1) {
+        let result = []
+        if (n == 0) return []
+        if (n >= array.length) return array
+        for (let i = 0; i < n; i++) {
+            result.push(array[i])
+        }
+        return result
+    }
+    //takeRight(array,n=1)从数组的结束元素开始提取N个元素
+    function takeRight(array, n = 1) {
+        let result = []
+        if (n == 0) return []
+        if (n >= array.length) return array
+        for (let i = array.length - 1; i >= array.length - n; i--) {
+            result.push(array[i])
+        }
+        return result.reverse()
+    }
 
 
 
@@ -721,5 +777,10 @@ var xupupeng = function() {
         sortedIndexOf: sortedIndexOf,
         sortedLastIndex: sortedLastIndex,
         sortedLastIndexBy: sortedLastIndexBy,
+        sortedLastIndexOf: sortedLastIndexOf,
+        sortedUniq: sortedUniq,
+        sortedUniqBy: sortedUniqBy,
+        tail: tail,
+
     }
 }()
