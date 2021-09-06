@@ -691,12 +691,115 @@ var xupupeng = function() {
         }
         return result.reverse()
     }
+    //union([arrays]),创建顺序排列的唯一值组成的数组。
+    function union(...arrays) {
+        const result = []
+        for (let i = 0; i < arrays.length; i++) {
+            let ary = arrays[i]
+            for (let j = 0; j < ary.length; j++) {
+                if (!result.includes(ary[j])) {
+                    result.push(ary[j])
+                }
+            }
+        }
+        return result
+    }
+    //unionBy([arrays],iteratee)这个方法类似union，除了它接受一个iteratee调用每一个数组和值，iteratee会传入一个参数（value）
+    function unionBy(...arrays) {
+        const result = []
+        const array = []
+        let iteratee = arrays.pop()
+        if (typeof iteratee == 'function') {
+            for (let i = 0; i < arrays.length; i++) {
+                let ary = arrays[i]
+                for (let j = 0; j < ary.length; j++) {
+                    let number = iteratee(ary[j])
+                    if (!array.includes(number)) {
+                        array.push(number)
+                        result.push(ary[j])
+                    }
+                }
+            }
+        }
+        if (typeof iteratee == 'string') {
+            let ary = []
+            for (let i = 0; i < arrays.length; i++) {
+                ary.push(...arrays[i])
+            }
 
+            for (let i = 0; i < ary.length; i++) {
+                let number = ary[i][iteratee]
+                if (!array.includes(number)) {
+                    array.push(number)
+                    result.push(ary[i])
+                }
+            }
+        }
+        return result
+    }
+    //without(array,value)创建一个移除了所有提供的values的数组。
+    function without(array, ...value) {
+        const result = []
+        for (let i = 0; i < array.length; i++) {
+            if (!value.includes(array[i])) {
+                result.push(array[i])
+            }
+        }
+        return result
+    }
+    //xor(...array)创建一个包含了所有唯一值的数组。
+    function xor(...array) {
+        const result = []
+        const ary1 = []
+        let ary = [].concat(...array)
 
+        for (let i = 0; i < ary.length; i++) {
+            let count = 0
+            for (let j = i + 1; j < ary.length; j++) {
+                if (ary[i] == ary[j]) {
+                    count = 1
+                    ary1.push(ary[i])
+                }
+            }
+            if (count == 0 && !ary1.includes(ary[i])) {
+                result.push(ary[i])
+            }
 
+        }
+        return result
+    }
+    //xorBy(...arrays,iteratee),这个方法类似于.xor,除了它接受一个iteratee调用每一个数组和值，iteratee会传入一个参数（value）
+    function xorBy(...arrays) {
+        const array = [].concat(...arrays)
+        let iteratee = array.pop()
 
-
-
+        const result = []
+        const result2 = []
+        const result3 = []
+        if (typeof iteratee == 'function') {
+            for (let i = 0; i < array.length; i++) {
+                result.push(iteratee(array[i]))
+            }
+        }
+        if (typeof iteratee == 'string') {
+            for (let i = 0; i < array.length; i++) {
+                result.push(array[i][iteratee])
+            }
+        }
+        for (let i = 0; i < result.length; i++) {
+            let count = 0
+            for (let j = i + 1; j < result.length; j++) {
+                if (result[i] == result[j]) {
+                    count = 1
+                    result2.push(result[i])
+                }
+            }
+            if (count == 0 && !result2.includes(result[i])) {
+                result3.push(array[i])
+            }
+        }
+        return result3
+    }
 
 
 
@@ -781,6 +884,13 @@ var xupupeng = function() {
         sortedUniq: sortedUniq,
         sortedUniqBy: sortedUniqBy,
         tail: tail,
+        take: take,
+        takeRight: takeRight,
+        union: union,
+        unionBy: unionBy,
+        without: without,
+        xor: xor,
+
 
     }
 }()
