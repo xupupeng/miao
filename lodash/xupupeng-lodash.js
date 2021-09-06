@@ -800,6 +800,14 @@ var xupupeng = function() {
         }
         return result3
     }
+    //zipObject(props=[],values=[])它接受2个数组，一个作为属性名，一个作为属性值
+    function zipObject(props = [], values = []) {
+        const obj = {}
+        for (let i = 0; i < props.length; i++) {
+            obj.props[i] = values[i]
+        }
+        return obj
+    }
 
 
 
@@ -890,6 +898,8 @@ var xupupeng = function() {
         unionBy: unionBy,
         without: without,
         xor: xor,
+        xorBy: xorBy,
+        zipObject: zipObject
 
 
     }
