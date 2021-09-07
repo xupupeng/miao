@@ -820,13 +820,83 @@ var xupupeng = function() {
             result.push(iteratee(...ary))
         }
     }
+    //countBy(collection,iteratee)创建一个组成对象key是经过iteratee处理的集合jieguo，value是处理结果的次数。iteratee会传入一个参数（value）
+    function countBy(collection, iteratee) {
+        const obj = {}
+        const ary = []
+        if (typeof iteratee == 'function') {
+            for (let i = 0; i < collection.length; i++) {
+                ary.push(iteratee(collection[i]))
+            }
+        }
+        if (typeof iteratee == 'string') {
+            for (let i = 0; i < collection.length; i++) {
+                ary.push(collection[i][iteratee])
+            }
+        }
+        for (let i = 0; i < ary.length; i++) {
+            let key = ary[i]
+            if (key in obj) {
+                obj[key]++
+            } else {
+                obj[key] = 1
+            }
+        }
+        return obj
+    }
+    //groupBy(collection,iteratee)创建一个对象组成，key是经过iteratee处理的结果，value是产生key的元素数组，iteratee会传入1个参数（value）
+    function groupBy(collection, iteratee) {
+        const obj = {}
+        if (typeof iteratee == 'function') {
+            for (let i = 0; i < collection.length; i++) {
+                let key = iteratee(collection[i])
 
+                if (!(key in obj)) {
+                    obj[key] = []
+                }
+                obj[key].push(collection[i])
+            }
+        }
+        if (typeof iteratee == 'string') {
+            for (let i = 0; i < collection.length; i++) {
+                let key = collection[i][iteratee]
 
-
-
-
-
-
+                if (!(key in obj)) {
+                    obj[key] = []
+                }
+                obj[key].push(collection[i])
+            }
+        }
+        return obj
+    }
+    //includes(collection,value,fromIndex=0)检查值是否在集合中，如果集合是字符串，那么检查值是否在字符串中，
+    function includes(collection, value, fromIndex = 0) {
+        if (Array.isArray(collection)) {
+            for (let i = fromIndex; i < collection.length; i++) {
+                if (collection[i] === value) return true
+            }
+        }
+        if (typeof collection == 'object') {
+            for (let key in collection) {
+                if (collection[key] === value) return true
+            }
+        }
+        if (typeof collection == 'string') {
+            let result = new RegExp(value)
+            return result.test(collection)
+        }
+        return false
+    }
+    //castArray(value)如果value不是数组，那么强制转换为数组
+    function castArray(value) {
+        if (Array.isArray(value)) return value
+        if (arguments.length == 0) return []
+        return [value]
+    }
+    //eq(value,other)比较两者的值确定他们是否相等
+    function eq(value, other) {
+        return value === other || (value !== value && other !== other)
+    }
 
 
 
@@ -913,6 +983,9 @@ var xupupeng = function() {
         xorBy: xorBy,
         zipObject: zipObject,
         zipWith: zipWith,
+        countBy: countBy,
+        groupBy: groupBy,
+        includes: includes,
 
 
     }
