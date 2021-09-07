@@ -607,7 +607,7 @@ var xupupeng = function() {
     //sortedIndexOf(array,value),这个方法类似于indexOf，除了他是执行二进制来检索已经排序的数组
     function sortedIndexOf(array, value) {
         for (let i = 0; i < array.length; i++) {
-            if (array[i] = value) {
+            if (array[i] == value) {
                 return i
             }
         }
@@ -804,9 +804,21 @@ var xupupeng = function() {
     function zipObject(props = [], values = []) {
         const obj = {}
         for (let i = 0; i < props.length; i++) {
-            obj.props[i] = values[i]
+            obj[props[i]] = values[i]
         }
         return obj
+    }
+    //zipWith(...arrays)这个方法类似zip，除了它接受一个iteratee决定如何重组值，iteratee会调用每一组元素。
+    function zipWith(...arrays) {
+        const iteratee = arrays.pop()
+        const result = []
+        for (let i = 0; i < arrays[0].length; i++) {
+            const ary = []
+            for (let j = 0; j < arrays.length; j++) {
+                ary.push(arrays[j][i])
+            }
+            result.push(iteratee(...ary))
+        }
     }
 
 
@@ -899,7 +911,8 @@ var xupupeng = function() {
         without: without,
         xor: xor,
         xorBy: xorBy,
-        zipObject: zipObject
+        zipObject: zipObject,
+        zipWith: zipWith,
 
 
     }
