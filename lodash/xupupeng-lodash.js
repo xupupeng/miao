@@ -819,6 +819,7 @@ var xupupeng = function() {
             }
             result.push(iteratee(...ary))
         }
+        return result
     }
     //countBy(collection,iteratee)创建一个组成对象key是经过iteratee处理的集合jieguo，value是处理结果的次数。iteratee会传入一个参数（value）
     function countBy(collection, iteratee) {
@@ -875,13 +876,11 @@ var xupupeng = function() {
             for (let i = fromIndex; i < collection.length; i++) {
                 if (collection[i] === value) return true
             }
-        }
-        if (typeof collection == 'object') {
+        } else if (typeof collection == 'object') {
             for (let key in collection) {
                 if (collection[key] === value) return true
             }
-        }
-        if (typeof collection == 'string') {
+        } else if (typeof collection == 'string') {
             let result = new RegExp(value)
             return result.test(collection)
         }
@@ -897,11 +896,57 @@ var xupupeng = function() {
     function eq(value, other) {
         return value === other || (value !== value && other !== other)
     }
-
-
-
-
-
+    //reduce(collection,iteratee,accumulator)通过iteratee遍历集合中的每个元素，每次返回的值会作为下一次iteratee使用，如果没有accumulator，则集合中的第一个元素作为zccumulator，iteratee会传入4个参数
+    function reduce(collection, iteratee, accumulator = collection[0]) {
+        let result = accumulator
+        if (Array.isArray(collection)) {
+            for (let i = 0; i < collection.length; i++) {
+                result = iteratee(result, collection[i])
+            }
+        } else if (typeof collection == 'object') {
+            for (let key in collection) {
+                iteratee(result, collection[key], key)
+            }
+        }
+        return result
+    }
+    //reduceRight(collection,iteratee,accumulator),这个方法类似reduce，除了他是从右到左遍历的。
+    function reduceRight(collection, iteratee, accumulator) {
+        let result = accumulator
+        for (let i = collection.length; i >= 0; i--) {
+            result = iteratee(result, collection[i])
+        }
+        return result
+    }
+    //sample(collection)从集合中水机获得元素
+    function sample(collection) {
+        if (Array.isArray(collection)) {
+            return collection[Math.floor(Math.random() * collection.length)]
+        }
+    }
+    //sampleSize(collection,n = 0)获得从集合中随机获得的N个元素
+    function sampleSize(collection, n = 0) {
+        let result = []
+        if (Array.isArray(collection)) {
+            if (n > collection.length) n = collection.length
+            for (let i = 0; i < n; i++) {
+                result.push(sample(collection))
+            }
+        }
+        return result
+    }
+    //size(collection)返回集合的长度或对象中可枚举的个数
+    function size(collection) {
+        if (typeof collection == 'string' || Array.isArray(collection)) return collection.length
+        if (typeof collection == 'object' && !Array.isArray(collection)) return Object.keys(collection).length
+    }
+    //conformsTo(object,source)通过调用具有的相应属性值的属性object来检查是否符合
+    function conformsTo(object, source) {
+        let key = Object.keys(source)
+        const f = source[key]
+        return f(object[key])
+    }
+    //
 
 
 
@@ -986,7 +1031,13 @@ var xupupeng = function() {
         countBy: countBy,
         groupBy: groupBy,
         includes: includes,
-
-
+        eq: eq,
+        reduce: reduce,
+        reduceRight: reduceRight,
+        sample: sample,
+        sampleSize: sampleSize,
+        size: size,
+        conformsTo: conformsTo,
+        castArray: castArray,
     }
 }()
