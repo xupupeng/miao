@@ -913,7 +913,7 @@ var xupupeng = function() {
     //reduceRight(collection,iteratee,accumulator),这个方法类似reduce，除了他是从右到左遍历的。
     function reduceRight(collection, iteratee, accumulator) {
         let result = accumulator
-        for (let i = collection.length; i >= 0; i--) {
+        for (let i = collection.length - 1; i >= 0; i--) {
             result = iteratee(result, collection[i])
         }
         return result
@@ -946,9 +946,58 @@ var xupupeng = function() {
         const f = source[key]
         return f(object[key])
     }
-    //
-
-
+    //gt(value,other)检查value是否大于other
+    function gt(value, other) {
+        return value > other ? true : false
+    }
+    //gte(value,other)检查value是否大于等于other
+    function gte(value, other) {
+        return value >= other ? true : false
+    }
+    //isArguments(value)检查value是否是类arguments对象。
+    function isArguments(value) {
+        return Object.prototype.toString.call(value) == '[object Arguments]'
+    }
+    //isArray(value)检查value是否是Array类对象
+    function isArray(value) {
+        return Object.prototype.toString.call(value) == '[object Array]'
+    }
+    //isArrayBuffer(value)检查value是否是ArrayBuffer对象
+    function isArrayBuffer(value) {
+        return Object.prototype.toString.call(value) == '[object ArrayBuffer]'
+    }
+    //isArrayLike(value)检查value是否是类数组。如果是类数组的话，应该不是一个函数，而且value.length是个整数，大于等于0
+    function isArrayLike(value) {
+        return typeof value !== 'function' || value.length >= 0
+    }
+    //isArrayLikeObject(value) 这个方法类似与isArrayLike,除了它还检查值是否是个对象
+    function isArrayLikeObject(value) {
+        return isArrayLike(value) && typeof value == 'object'
+    }
+    //isBoolean(value)检查value是否是原始boolean类型或者duixiang
+    function isBoolean(value) {
+        return Object.prototype.toString.call(value) == '[object Boolean]'
+    }
+    //isDate(value)检查value是否是个Date类型
+    function isDate(value) {
+        return Object.prototype.toString.call(value) == '[object Date]'
+    }
+    //isElement(value)检查value是否可能是DOM元素
+    function isElement(value) {
+        return Object.prototype.toString.call(value) == '[object HTMLBodyElement]'
+    }
+    //isEmpty(value)检查value是否为空，判断的依据是除非是有枚举属性的对象，length大于0的arguments object，array，string或者类jquery选择器
+    function isEmpty(value) {
+        if (value == null || typeof value === 'undefined' || typeof value === 'Boolean' || value !== value || typeof value === 'Number') return true
+        if (typeof value == 'string') return value.length
+        if (typeof value == 'object') {
+            if (Array.isArray(value)) {
+                return value.length == 0
+            } else {
+                return Object.keys(value).length == 0
+            }
+        }
+    }
 
 
 
@@ -1039,5 +1088,16 @@ var xupupeng = function() {
         size: size,
         conformsTo: conformsTo,
         castArray: castArray,
+        gt: gt,
+        gte: gte,
+        isArguments: isArguments,
+        isArray: isArray,
+        isArrayBuffer: isArrayBuffer,
+        isArrayLike: isArrayLike,
+        isArrayLikeObject: isArrayLikeObject,
+        isBoolean: isBoolean,
+        isDate: isDate,
+        isElement: isElement,
+        isEmpty: isEmpty,
     }
 }()
