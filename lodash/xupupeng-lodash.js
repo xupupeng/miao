@@ -988,7 +988,7 @@ var xupupeng = function() {
     }
     //isEmpty(value)检查value是否为空，判断的依据是除非是有枚举属性的对象，length大于0的arguments object，array，string或者类jquery选择器
     function isEmpty(value) {
-        if (value == null || typeof value === 'undefined' || typeof value === 'Boolean' || value !== value || typeof value === 'Number') return true
+        if (value == null || typeof value === 'undefined' || typeof value === 'boolean' || value !== value || typeof value === 'number') return true
         if (typeof value == 'string') return value.length
         if (typeof value == 'object') {
             if (Array.isArray(value)) {
@@ -998,6 +998,68 @@ var xupupeng = function() {
             }
         }
     }
+    //isEqual(value,other)执行深比较来决定两者的值是否相等。
+    function isEqual(value, other) {
+        if (value === other) return true
+        if (typeof value !== typeof other) return false
+        if (typeof value == 'object' && typeof other == 'object') {
+            if (Object.keys(value).length !== Object.keys(other).length) return false
+            for (let key in value) {
+                if (!isEqual(value[key], other[key])) return false
+                if (!(key in other)) return false
+            }
+            return true
+        }
+        return false
+    }
+    //isError(value)检查value是否是Error,EvalError,TangeError,TeferenceError,SyntaxError,TypeError,或者URIError object
+    function isError(value) {
+        return Object.prototype.toString.call(value) == '[object Error]'
+    }
+    //isFinite(value) 检查value是否是原始finite number  是否是一个有穷数
+    function isFinite(value) {
+        return Number.isFinite(value)
+    }
+    //isFunction(value) 检查value的值是否是Function对象
+    function isFunction(value) {
+        return typeof value == 'function'
+    }
+    //isInteger(value)检查value是否为整数
+    function isInteger(value) {
+        return typeof value == 'number' && Math.floor(value) == value
+    }
+    //isLength(value)检查value是否是有效长度
+    function isLength(value) {
+        return value >= 0 && Math.ceil(value) == value
+    }
+    //isMap(value)检查value是否是个Map对象
+    function isMap(value) {
+        return Object.prototype.toString.call(value) == '[object Map]'
+    }
+    //isMatch(object,source)执行一个深比较来确定object是否包含有source的属性值。
+    function isMatch(object, source) {
+        if (object === source) return true
+        if (typeof object !== 'object' || typeof source !== 'object') return false
+        for (let key in source) {
+            if (typeof source[key] !== 'object' && source[key]) {
+                if (source[key] !== object[key]) return false
+            } else if (source[key]) {
+                return isMatch(object[key], source[key])
+            }
+
+        }
+        return true
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1099,5 +1161,13 @@ var xupupeng = function() {
         isDate: isDate,
         isElement: isElement,
         isEmpty: isEmpty,
+        isEqual: isEqual,
+        isError: isError,
+        isFinite: isFinite,
+        isFunction: isFunction,
+        isInteger: isInteger,
+        isLength: isLength,
+        isMap: isMap,
+        isMatch: isMatch,
     }
 }()
