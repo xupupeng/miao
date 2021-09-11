@@ -1083,6 +1083,30 @@ var xupupeng = function() {
     function isRegExp(value) {
         return Object.prototype.toString.call(value) == '[object RegExp]'
     }
+    //isSet(value) 检查value是否为Set对象
+    function isSet(value) {
+        return Object.prototype.toString.call(value) == '[object Set]'
+    }
+    //isString(value)检查value是否是原始字符串或者对象
+    function isString(value) {
+        return typeof value == 'string'
+    }
+    //isSymbol(vaule)检查value是否是Symbol或者对象
+    function isSymbol(value) {
+        return typeof value == 'symbol'
+    }
+    //isUndefined(value)检查value是否是undefined
+    function isUndefined(value) {
+        return value === undefined
+    }
+    //isWeakMap(value)检查value是否是WeakMap对象
+    function isWeakMap(value) {
+        return Object.prototype.toString.call(value) == '[object WeakMap]'
+    }
+    //isWeakSet(value)检查value是否是WeakSet对象
+    function isWeakSet(value) {
+        return Object.prototype.toString.call(value) == '[object WeakSet]'
+    }
 
 
 
@@ -1210,5 +1234,6 @@ var xupupeng = function() {
         isObject: isObject,
         isObjectLike: isObjectLike,
         isRegExp: isRegExp,
+        isSet: isSet,
     }
 }()
