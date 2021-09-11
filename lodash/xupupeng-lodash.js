@@ -1202,5 +1202,13 @@ var xupupeng = function() {
         isLength: isLength,
         isMap: isMap,
         isMatch: isMatch,
+        isNaN: isNaN,
+        isNative: isNative,
+        isNil: isNil,
+        isNull: isNull,
+        isNumber: isNumber,
+        isObject: isObject,
+        isObjectLike: isObjectLike,
+        isRegExp: isRegExp,
     }
 }()
