@@ -1026,11 +1026,11 @@ var xupupeng = function() {
     }
     //isInteger(value)检查value是否为整数
     function isInteger(value) {
-        return typeof value == 'number' && Math.floor(value) == value
+        return typeof value == 'number' && Math.floor(value) == value && value !== Infinity
     }
     //isLength(value)检查value是否是有效长度
     function isLength(value) {
-        return value >= 0 && Math.ceil(value) == value
+        return value >= 0 && isInteger(value)
     }
     //isMap(value)检查value是否是个Map对象
     function isMap(value) {
@@ -1049,6 +1049,39 @@ var xupupeng = function() {
 
         }
         return true
+    }
+    //isNaN(value)检查value是否为NaN
+    function isNaN(value) {
+        if (typeof value == 'object') return value.valueOf !== value.valueOf
+    }
+    //isNative(value)检查value是否是原生函数
+    function isNative(value) {
+        return typeof value == 'function' && Function.prototype.toString.call(value).includes('[native code]')
+    }
+    //isNil(value)检查value是否是null或者undefined
+    function isNil(value) {
+        return value === undefined || value === null
+    }
+    //isNull(value)检查value是否是null
+    function isNull(value) {
+        return value === null
+    }
+    //isNumber(value)检查value是否是原始数值型或者对象
+    function isNumber(value) {
+        // return Object.prototype.toString.call(value) == '[object number]'
+        return value == Infinity || value == -Infinity || isNaN(value) || isFinite(value)
+    }
+    //isObject(value)检查value是否是Objec。
+    function isObject(value) {
+        return value !== null && (typeof value == 'function' || typeof value == 'object')
+    }
+    //isObjectLike检查value是否是类对象，类对象应该不是null以及typeof的结果是'object'
+    function isObjectLike(value) {
+        return value !== null && typeof value == 'object'
+    }
+    //isRegExp(value)检查value是否是RegExp对象
+    function isRegExp(value) {
+        return Object.prototype.toString.call(value) == '[object RegExp]'
     }
 
 
