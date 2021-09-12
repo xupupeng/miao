@@ -276,13 +276,7 @@ var xupupeng = function() {
         if (array.length === 0) {
             return undefined
         }
-        var min = array[0]
-        for (var i = 0; i < array.length; i++) {
-            if (min < array[i]) {
-                min = array[i]
-            }
-        }
-        return min
+        return Math.min(...array)
     }
     // subtract(minuend,subtrahend)两个数相减。
     function subtract(minuend, subtrahend) {
@@ -1128,9 +1122,117 @@ var xupupeng = function() {
         if (Array.isArray(value)) return value
         return []
     }
-
-
-
+    //ceil(number,precision=0)根据precision向上舍入number
+    function ceil(number, precision = 0) {
+        let a = Math.ceil(number * Math.pow(10, precision))
+        let b = Math.pow(10, precision)
+        return a / b
+    }
+    //floor(number,precision=0)根据precision向下保留number
+    function floor(number, precision = 0) {
+        let a = Math.floor(number * Math.pow(10, precision))
+        let b = Math.pow(10, precision)
+        return a / b
+    }
+    //divide(dividend,divisor)
+    function divide(dividend, divisor) {
+        return dividend / divisor
+    }
+    //meanBy(array,iteratee)
+    function meanBy(array, iteratee) {
+        let result
+        if (typeof iteratee == 'function') {
+            result = array.map(it => iteratee(it))
+        }
+        if (typeof iteratee == 'string') {
+            result = array.map(it = it[iteratee])
+        }
+        return mean(result)
+    }
+    //maxBy(array,iteratee)这个方法类似与max除了它接受iteratee调用每个元素，根据返回的value决定排序准则。iterat会传入一个参数（value）
+    function maxBy(array, iteratee) {
+        let result
+        if (typeof iteratee == 'function') {
+            result = array.map(it => iteratee(it))
+            let index = result.indexOf(Math.max(...result))
+            return array[index]
+        }
+        if (typeof iteratee == 'string') {
+            result = array.map(it => it(iteratee))
+            let index = result.indexOf(Math.max(...result))
+            return array[index]
+        }
+    }
+    //minBy(array,iteratee)这个方法类似min，除了它接受iteratee调用每一个元素，根据返回的value决定排序准则，iteratee会传入一个参数(value)
+    function minBy(array, iteratee) {
+        let result
+        if (typeof iteratee == 'function') {
+            result = array.map(it => iteratee(it))
+            let index = result.indexOf(Math.min(...result))
+            return array[index]
+        }
+        if (typeof iteratee == 'string') {
+            result = array.map(it => it[iteratee])
+            let index = result.indexOf(Math.min(...result))
+            return array[index]
+        }
+    }
+    //multiply(multiplier,multiplicand) 两个数相乘
+    function multiply(multiplier, multiplicand) {
+        return multiplier * multiplicand
+    }
+    //round(number,precision=0)根据四舍五入number
+    function round(number, precision = 0) {
+        let a = Math.round(number * Math.pow(10, precision))
+        let b = Math.pow(10, precision)
+        return a / b
+    }
+    //subtract(minuend,subtrahend)两数相减
+    function subtract(minuend, subtrahend) {
+        return minuend - subtrahend
+    }
+    //sumBy(array,iteratee)这个方法类似sum，除了它接受iteratee调用每一个元素，根据返回的value决定如何计算，iteratee会传入一个参数（value）
+    function sumBy(array, iteratee) {
+        let result
+        if (typeof iteratee == 'function') {
+            result = array.map(it => iteratee(it))
+            return sum(result)
+        }
+        if (typeof iteratee == 'string') {
+            result = array.map(it => it[iteratee])
+            return sum(result)
+        }
+    }
+    //clamp(number,min,max)返回限制在min和max之间的值
+    function clamp(number, min, max) {
+        if (number == Math.max(number, min, max)) return Math.max(min, max)
+        if (number == Math.min(number, min, max)) return Math.min(min, max)
+    }
+    //inRange(number,start=0,end)检查number是否在start与end之间，但不包括end，如果end没有指定，那么start设置为0.如果start大于end，那么参数会交换以便支持负范围。
+    function inRange(number, start = 0, end) {
+        if (arguments.length == 2) {
+            start = 0
+            end = arguments[1]
+        }
+        if (end >= start) {
+            return number >= start && number < end
+        }
+        if (end <= start) {
+            return number > end && number <= start
+        }
+    }
+    //assign(object,...sources)分配来源对象的可枚举属性到目标对象上。来源对象的应用规则是从左到右，随后的下一个对象的属性会覆盖上一个对象的属性
+    function assignIn(object, ...sources) {
+        for (let i = 0; i < sources.length; i++) {
+            let source = sources[i]
+            if (typeof source == 'object') {
+                for (let key in source) {
+                    object[key] = source[key]
+                }
+            }
+        }
+        return object
+    }
 
 
 
@@ -1264,5 +1366,20 @@ var xupupeng = function() {
         It: It,
         Ite: Ite,
         toArray: toArray,
+        map: map,
+        ceil: ceil,
+        floor: floor,
+        divide: divide,
+        meanBy: meanBy,
+        maxBy: maxBy,
+        minBy: minBy,
+        multiply: multiply,
+        round: round,
+        sumBy: sumBy,
+        subtract: subtract,
+        clamp: clamp,
+        inRange: inRange,
+        assignIn: assignIn,
+
     }
 }()
