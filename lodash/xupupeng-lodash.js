@@ -1052,7 +1052,7 @@ var xupupeng = function() {
     }
     //isNaN(value)检查value是否为NaN
     function isNaN(value) {
-        if (typeof value == 'object') return value.valueOf !== value.valueOf
+        if (typeof value == 'object') return value.valueOf !== value.valueOf && Number.isNaN(value)
     }
     //isNative(value)检查value是否是原生函数
     function isNative(value) {
@@ -1106,6 +1106,27 @@ var xupupeng = function() {
     //isWeakSet(value)检查value是否是WeakSet对象
     function isWeakSet(value) {
         return Object.prototype.toString.call(value) == '[object WeakSet]'
+    }
+    //It(value,other)检查value是否小于other
+    function It(value, other) {
+        return value < other
+    }
+    //Ite(value,other) 检查value是否小于等于other
+    function Ite(value, other) {
+        return value <= other
+    }
+    //toArray(value)转换value为数组
+    function toArray(value) {
+        const result = []
+        if (typeof value == 'object' && !Array.isArray(value)) {
+            for (let key in value) {
+                result.push(value[key])
+            }
+            return result
+        }
+        if (typeof value == 'string') return value.split('')
+        if (Array.isArray(value)) return value
+        return []
     }
 
 
@@ -1235,5 +1256,13 @@ var xupupeng = function() {
         isObjectLike: isObjectLike,
         isRegExp: isRegExp,
         isSet: isSet,
+        isString: isString,
+        isSymbol: isSymbol,
+        isUndefined: isUndefined,
+        isWeakMap: isWeakMap,
+        isWeakSet: isWeakSet,
+        It: It,
+        Ite: Ite,
+        toArray: toArray,
     }
 }()
