@@ -1233,8 +1233,82 @@ var xupupeng = function() {
         }
         return object
     }
-
-
+    //defaults(object,...sources)分配来源对象的可枚举属性到目标对象所有解析为undefined的属性上，来源对象从左到右应用，一旦设置了相同属性的值，后续的将被忽略掉。
+    function defaults(object, ...sources) {
+        for (let s of sources) {
+            for (let key in s) {
+                if (!(key in object)) {
+                    object[key] = s[key]
+                }
+            }
+        }
+        return object
+    }
+    //defaultsDeep(object,...sources)这个方法类似defaults，他会递归分配默认属性
+    function defaultsDeep(object, ...sources) {
+        for (let s of sources) {
+            for (let key in s) {
+                if (typeof object[key] == 'object') {
+                    defaultsDeep(object[key], s[key])
+                } else {
+                    if (!(key in object)) {
+                        object[key] = s[key]
+                    }
+                }
+            }
+        }
+        return object
+    }
+    //forIn(object,iteratee)使用iteratee遍历对象的自身和继承的可枚举属性，iteratee会传入三个参数（value,key,object），若返回false，iteratee会提前退出遍历
+    function forIn(object, iteratee) {
+        for (let key in object) {
+            if (iteratee(object[key], key, object) === false) {
+                break
+            }
+        }
+        return object
+    }
+    //forInRight(object,iteratee)这个类似forIn，除了他是反方向开始遍历的
+    function forInRight(object, iteratee) {
+        const array = Object.keys(object)
+        for (let i = array.length; i >= 0; i--) {
+            if (iteratee(object[array[i]], array[i], object) === false) break
+        }
+        return object
+    }
+    //forOwn(object,iteratee)使用iteratee遍历自身可枚举属性，iteratee会传入3个参数，value，key，object，如果返回false，iteratee会提前退出遍历
+    function forOwn(object, iteratee) {
+        for (let key in object) {
+            if (iteratee(object[key], key, object) === false) break
+        }
+        return object
+    }
+    //forOwnRight(object,iteratee)这个方法类似forOwn，除了他是反方向遍历的
+    function forOwnRight(object, iteratee) {
+        const array = Object.keys(object)
+        for (let i = array.length; i >= 0; i--) {
+            if (iteratee(object[array[i]], array[i], object)) break
+        }
+        return object
+    }
+    //functions(object)返回一function对象自身可枚举属性名的数组
+    function functions(object) {
+        const result = []
+        for (let key in object) {
+            if (object.hasOwnProperty(key)) {
+                result.push(key)
+            }
+        }
+        return result
+    }
+    //functionsIn(object)返回一个function对象自身和继承的可枚举属性名的数组
+    function functionsIn(object) {
+        const result = []
+        for (let key in object) {
+            if (typeof object[key] == 'function') result.push(key)
+        }
+        return result
+    }
 
 
 
@@ -1380,6 +1454,14 @@ var xupupeng = function() {
         clamp: clamp,
         inRange: inRange,
         assignIn: assignIn,
+        defaults: defaults,
+        defaultsDeep: defaultsDeep,
+        forIn: forIn,
+        forInRight: forInRight,
+        forOwn: forOwn,
+        forOwnRight: forOwnRight,
+        functions: functions,
+        functionsIn: functionsIn,
 
     }
 }()
