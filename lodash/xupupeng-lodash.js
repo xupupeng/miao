@@ -42,6 +42,52 @@ var xupupeng = function() {
         return arr
 
     }
+    //differenceBy(array,values,iteratee)这个方法类似difference，除了它接受一个iteratee调用每一个数组和值，iteratee会传入一个参数value
+    function differenceBy(array, ...values) {
+        const iteratee = values.pop()
+        const value = [].concat(...values)
+        const result = []
+        let array2, value2
+        if (typeof iteratee == 'function') {
+            array2 = array.map(it => iteratee(it))
+            value2 = value.map(it => iteratee(it))
+        }
+        if (typeof iteratee == 'string') {
+            array2 = array.map(it => it[iteratee])
+            value2 = value.map(it => it[iteratee])
+        }
+
+        for (let i = 0; i < array.length; i++) {
+            let index
+            if (!(value2.includes(array2[i]))) {
+                index = array2.indexOf(array2[i])
+                result.push(array[index])
+            }
+
+        }
+        return result
+    }
+    //differenceWith(array,values,comparator)这个方法类似difference，除了它接受一个comparator调用每一个数组元素的值，comparator会传入两个参数（arrVal,othVal)
+    function differenceWith(array, ...values) {
+        const comparator = values.pop()
+        const value = [].concat(...values)
+        const result = []
+        for (let i = 0; i < array.length; i++) {
+            for (let j = 0; j < value.length; j++) {
+                if (comparator(array[i], value[j]) === false) {
+                    result.push(array[i])
+                }
+            }
+        }
+        return result
+    }
+
+
+
+
+
+
+
     //drop(array,[n])创建一个切片数组，去除array前面的n个元素。
     function drop(array, n = 1) {
         var arr = []
@@ -1334,6 +1380,8 @@ var xupupeng = function() {
         chunk: chunk,
         compact: compact,
         difference: difference,
+        differenceBy: differenceBy,
+        differenceWith: differenceWith,
         drop: drop,
         dropRight: dropRight,
         join: join,
