@@ -56,6 +56,10 @@ var xupupeng = function() {
             array2 = array.map(it => it[iteratee])
             value2 = value.map(it => it[iteratee])
         }
+        if (Array.isArray(iteratee)) {
+            array2 = array
+            value2 = [].concat(iteratee)
+        }
 
         for (let i = 0; i < array.length; i++) {
             let index
@@ -1355,6 +1359,55 @@ var xupupeng = function() {
         }
         return result
     }
+    //omit(object,props)反向版pick，这个方法返回忽略属性之外的自身和继承的可枚举属性
+    function omit(object, props) {
+        const result = {}
+        for (let key in object) {
+            if (!(props.includes(key))) {
+                result[key] = object[key]
+            }
+        }
+        return result
+    }
+    //pick(object,props)创建一个从object中选中的属性对象
+    function pick(object, props) {
+        const result = {}
+        for (let key in object) {
+            if (props.includes(key)) {
+                result[key] = object[key]
+            }
+        }
+        return result
+    }
+    //omitBy(object,predicate)反向版pickBy，这个方法返回经predicate判断不是真值的属性自身和继承和可枚举属性。
+    function omitBy(object, predicate) {
+        const result = {}
+        for (let key in object) {
+            if (!predicate(object[key])) {
+                result[key] = object[key]
+            }
+        }
+        return result
+    }
+    //pickBy(object,predicate)创建一个从object中经predicate判断为真值的属性为对象，predicate会传入一个参数（value）
+    function pickBy(object, predicate) {
+        const result = {}
+        for (let key in object) {
+            if (predicate(object[key])) {
+                result[key] = object[key]
+            }
+        }
+        return result
+    }
+    //toPairs(object)创建一个对象自身可枚举属性的键值对数组
+    function toPairs(object) {
+        const result = []
+        for (let key in object) {
+            result.push([key, object[key]])
+        }
+        return result
+
+    }
 
 
 
@@ -1510,6 +1563,12 @@ var xupupeng = function() {
         forOwnRight: forOwnRight,
         functions: functions,
         functionsIn: functionsIn,
+        omit: omit,
+        pick: pick,
+        omitBy: omitBy,
+        pickBy: pickBy,
+        toPairs: toPairs,
+
 
     }
 }()
