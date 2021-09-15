@@ -1408,7 +1408,85 @@ var xupupeng = function() {
         return result
 
     }
+    //findIndex(array,predicate)这个方法类似find，除了它返回最先通过predicate判断为真值的元素index，而不是元素本身。
+    function findIndex(array, predicate) {
+        if (typeof predicate == 'function') {
+            for (let i = 0; i < array.length; i++) {
+                let obj = array[i]
+                for (let key in obj) {
+                    if (obj[key] == predicate(array[i])) {
+                        return i
+                    }
+                }
+            }
+        }
+        if (!Array.isArray(predicate) && typeof predicate == 'object') {
+            for (let i = 0; i < array.length; i++) {
+                if (isEqual(array[i], predicate)) {
+                    return i
+                }
+            }
+        }
+        if (Array.isArray(predicate)) {
+            for (let i = 0; i < array.length; i++) {
+                let obj = array[i]
+                for (let key in obj) {
+                    if (key == predicate[0] && obj[key] == predicate[1]) {
+                        return i
+                    }
+                }
+            }
+        }
+        if (typeof predicate == 'string') {
+            for (let i = 0; i < array.length; i++) {
+                let obj = array[i]
+                if (obj[predicate]) {
+                    return i
+                }
+            }
+        }
+        return -1
 
+    }
+    //findLastIndex(array,predicate)这个方式类似findIndex，不过它是从右到左的
+    function findLastIndex(array, predicate) {
+        if (typeof predicate == 'function') {
+            for (let i = array.length - 1; i >= 0; i--) {
+                let obj = array[i]
+                for (let key in obj) {
+                    if (obj[key] == predicate(array[i])) {
+                        return i
+                    }
+                }
+            }
+        }
+        if (!Array.isArray(predicate) && typeof predicate == 'object') {
+            for (let i = array.length - 1; i >= 0; i--) {
+                if (isEqual(array[i], predicate)) {
+                    return i
+                }
+            }
+        }
+        if (Array.isArray(predicate)) {
+            for (let i = array.length - 1; i >= 0; i--) {
+                let obj = array[i]
+                for (let key in obj) {
+                    if (key == predicate[0] && obj[key] == predicate[1]) {
+                        return i
+                    }
+                }
+            }
+        }
+        if (typeof predicate == 'string') {
+            for (let i = array.length - 1; i >= 0; i--) {
+                let obj = array[i]
+                if (obj[predicate]) {
+                    return i
+                }
+            }
+        }
+        return -1
+    }
 
 
 
