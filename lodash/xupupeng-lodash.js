@@ -58,7 +58,12 @@ var xupupeng = function() {
         }
         if (Array.isArray(iteratee)) {
             array2 = array
-            value2 = [].concat(iteratee)
+            if (values.length > 2) {
+                value2 = value
+            } else {
+                value2 = [].concat(iteratee)
+            }
+
         }
 
         for (let i = 0; i < array.length; i++) {
@@ -1487,7 +1492,51 @@ var xupupeng = function() {
         }
         return -1
     }
+    //dropRightWhile(array,predicate)从右边开始裁剪数组，起点从predicate返回假值开始。predicate会传入3个参数（value，index，array）。
+    function dropRightWhile(array, predicate) {
+        let result
+        if (typeof predicate == 'function') {
+            for (let i = array.length - 1; i >= 0; i--) {
+                let data = predicate(array[i])
+                if (!data) {
+                    result = array.slice(0, i + 1)
+                    break
+                }
+            }
+            return result
+        }
+        if (typeof predicate == 'object' && !Array.isArray(predicate)) {
+            for (let i = array.length - 1; i >= 0; i--) {
+                if (!isEqual(array[i], predicate)) {
+                    result = array.slice(0, i + 1)
+                    break
+                }
+            }
+            return result
+        }
+        if (Array.isArray(predicate)) {
+            for (let i = array.length - 1; i >= 0; i--) {
+                let data = array[i]
+                for (let key in data) {
+                    if (!(key == predicate[0] && data[key] == predicate[1])) {
+                        result = array.slice(0, i + 1)
+                        break
 
+                    }
+                }
+            }
+            return result
+        }
+        if (typeof predicate == 'string') {
+            for (let i = array.length - 1; i >= 0; i--) {
+                if (!array[i][predicate]) {
+                    result = array.slice(0, i + 1)
+                    break
+                }
+            }
+            return result
+        }
+    }
 
 
 
@@ -1646,6 +1695,10 @@ var xupupeng = function() {
         omitBy: omitBy,
         pickBy: pickBy,
         toPairs: toPairs,
+        findIndex: findIndex,
+        findLastIndex: findLastIndex,
+        dropRightWhile: dropRightWhile,
+
 
 
     }
