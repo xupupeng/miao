@@ -58,7 +58,7 @@ var xupupeng = function() {
         }
         if (Array.isArray(iteratee)) {
             array2 = array
-            if (values.length > 2) {
+            if (values.length >= 2) {
                 value2 = value
             } else {
                 value2 = [].concat(iteratee)
@@ -1418,10 +1418,8 @@ var xupupeng = function() {
         if (typeof predicate == 'function') {
             for (let i = 0; i < array.length; i++) {
                 let obj = array[i]
-                for (let key in obj) {
-                    if (obj[key] == predicate(array[i])) {
-                        return i
-                    }
+                if (predicate(obj)) {
+                    return i
                 }
             }
         }
@@ -1459,7 +1457,7 @@ var xupupeng = function() {
             for (let i = array.length - 1; i >= 0; i--) {
                 let obj = array[i]
                 for (let key in obj) {
-                    if (obj[key] == predicate(array[i])) {
+                    if (predicate(obj)) {
                         return i
                     }
                 }
@@ -1537,8 +1535,99 @@ var xupupeng = function() {
             return result
         }
     }
+    //dropWhile(array,predicate)裁剪数组，起点从predicate返回假值开始，predicate会传入3个参数(value,index,array)
+    function dropWhile(array, predicate) {
+        let result
+        if (typeof predicate == 'function') {
+            for (let i = 0; i < array.length; i++) {
+                let data = predicate(array[i])
+                if (!data) {
+                    result = array.slice(0, i + 1)
+                    break
+                }
+            }
+            return result
+        }
+        if (typeof predicate == 'object' && !Array.isArray(predicate)) {
+            for (let i = 0; i < array.length; i++) {
+                if (!isEqual(array[i], predicate)) {
+                    result = array.slice(0, i + 1)
+                    break
+                }
+            }
+            return result
+        }
+        if (Array.isArray(predicate)) {
+            for (let i = 0; i < array.length; i++) {
+                let data = array[i]
+                for (let key in data) {
+                    if (!(key == predicate[0] && data[key] == predicate[1])) {
+                        result = array.slice(0, i + 1)
+                        break
 
-
+                    }
+                }
+            }
+            return result
+        }
+        if (typeof predicate == 'string') {
+            for (let i = 0; i < array.length; i++) {
+                if (!array[i][predicate]) {
+                    result = array.slice(0, i + 1)
+                    break
+                }
+            }
+            return result
+        }
+    }
+    //intersectionBy(arrays,iteratee)这个方法类似intersection，除了它接受一个iter调用每一个数组和值，iteratee会传入一个参数(value)
+    function intersectionBy(...arrays) {
+        const iteratee = arrays.pop()
+        const array = arrays[0]
+        const others = arrays[1]
+        const result = []
+        if (typeof iteratee == 'function') {
+            for (let i = 0; i < array.length; i++) {
+                let m = iteratee(array[i])
+                for (let j = 0; j < others.length; j++) {
+                    let n = iteratee(others[j])
+                    if (m == n) {
+                        result.push(array[i])
+                    }
+                }
+            }
+            return result
+        }
+        if (typeof iteratee == 'string') {
+            for (let i = 0; i < array.length; i++) {
+                let m = array[i][iteratee]
+                for (let j = 0; j < others.length; j++) {
+                    let n = others[j][iteratee]
+                    if (m == n) {
+                        result.push(array[i])
+                    }
+                }
+            }
+            return result
+        }
+    }
+    //intersectionWith(...arrays)这个方法类似intersection，除了它接受一个comparator调用每一个数组和值，iteratee会传入2个参数（arrVal,othVal)
+    function intersectionWith(...arrays) {
+        const iteratee = arrays.pop()
+        const array = arrays[0]
+        const others = arrays[1]
+        const result = []
+        for (let i = 0; i < array.length; i++) {
+            let m = array[i]
+            for (let j = 0; j < others.length; j++) {
+                let n = others[j]
+                if (iteratee(m, n)) {
+                    result.push(m)
+                }
+            }
+        }
+        return result
+    }
 
 
 
@@ -1698,6 +1787,9 @@ var xupupeng = function() {
         findIndex: findIndex,
         findLastIndex: findLastIndex,
         dropRightWhile: dropRightWhile,
+        dropWhile: dropWhile,
+        intersectionBy: intersectionBy,
+        intersectionWith: intersectionWith,
 
 
 
