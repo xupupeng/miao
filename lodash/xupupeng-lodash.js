@@ -58,8 +58,8 @@ var xupupeng = function() {
         }
         if (Array.isArray(iteratee)) {
             array2 = array
-            if (values.length >= 2) {
-                value2 = value
+            if (values.length > 0) {
+                value2 = value.concat(iteratee)
             } else {
                 value2 = [].concat(iteratee)
             }
@@ -1628,10 +1628,38 @@ var xupupeng = function() {
         }
         return result
     }
+    //pullAllBy(array,values,iteatee)这个方法类似pullAll，除了它接受一个comparator调用每一个数组元素的值，comparator会传入一个参数(value)
+    function pullAllBy(array, values, iteratee) {
 
-
-
-
+        if (typeof iteratee == 'string') {
+            const ary = array.map(it => it[iteratee])
+            const val = values.map(it => it[iteratee])
+            for (let i = 0; i < array.length; i++) {
+                if (val.includes(ary[i])) {
+                    array.splice(i, 1)
+                    ary.splice(i, 1)
+                    i--
+                }
+            }
+        }
+        return array
+    }
+    //pullAllWith(array,values,iteratee)
+    function pullAllWith(array, values, iteratee) {
+        if (typeof iteratee == 'function') {
+            for (let i = 0; i < array.length; i++) {
+                let obj = array[i]
+                for (let j = 0; j < values.length; j++) {
+                    let value = values[j]
+                    if (iteratee(obj, value)) {
+                        array.splice(i, 1)
+                        i--
+                    }
+                }
+            }
+        }
+        return array
+    }
 
 
 
@@ -1790,6 +1818,8 @@ var xupupeng = function() {
         dropWhile: dropWhile,
         intersectionBy: intersectionBy,
         intersectionWith: intersectionWith,
+        pullAllBy: pullAllBy,
+        pullAllWith: pullAllWith,
 
 
 
