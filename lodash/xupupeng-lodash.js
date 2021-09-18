@@ -1542,7 +1542,7 @@ var xupupeng = function() {
             for (let i = 0; i < array.length; i++) {
                 let data = predicate(array[i])
                 if (!data) {
-                    result = array.slice(0, i + 1)
+                    result = array.slice(i, array.length)
                     break
                 }
             }
@@ -1551,7 +1551,7 @@ var xupupeng = function() {
         if (typeof predicate == 'object' && !Array.isArray(predicate)) {
             for (let i = 0; i < array.length; i++) {
                 if (!isEqual(array[i], predicate)) {
-                    result = array.slice(0, i + 1)
+                    result = array.slice(i, array.length)
                     break
                 }
             }
@@ -1562,7 +1562,7 @@ var xupupeng = function() {
                 let data = array[i]
                 for (let key in data) {
                     if (!(key == predicate[0] && data[key] == predicate[1])) {
-                        result = array.slice(0, i + 1)
+                        result = array.slice(i, array.length)
                         break
 
                     }
@@ -1573,7 +1573,7 @@ var xupupeng = function() {
         if (typeof predicate == 'string') {
             for (let i = 0; i < array.length; i++) {
                 if (!array[i][predicate]) {
-                    result = array.slice(0, i + 1)
+                    result = array.slice(i, array.length)
                     break
                 }
             }
@@ -1660,6 +1660,183 @@ var xupupeng = function() {
         }
         return array
     }
+    //takeRightWhile(array,predicate)从数组的最右边开始提取数组，直到predicate返回假值，predicate会传入三个参数(value,index,array)
+    function takeTightWhile(array, predicate) {
+        const result = []
+        if (typeof predicate == 'function') {
+            for (let i = array.length - 1; i >= 0; i--) {
+                let item = predicate(array[i])
+                if (item) {
+                    result.unshift(array[i])
+                } else {
+                    break
+                }
+            }
+            return result
+        }
+        if (typeof predicate == 'object' && !Array.isArray(predicate)) {
+            for (let i = array.length - 1; i >= 0; i--) {
+                if (isEqual(array[i], predicate)) {
+                    result.unshift(array[i])
+                } else {
+                    break
+                }
+            }
+            return result
+        }
+        if (Array.isArray(predicate)) {
+            for (let i = array.length - 1; i >= 0; i--) {
+                let falg = false
+                let obj = array[i]
+                for (let key in obj) {
+                    if (key == predicate[0] && obj[key] == predicate[1]) {
+                        result.unshift(array[i])
+                    } else {
+                        falg = true
+                    }
+                }
+                if (falg) {
+                    break
+                }
+            }
+            return result
+        }
+        if (typeof predicate == 'string') {
+            for (let i = array.length - 1; i >= 0; i--) {
+                if (array[i][predicate]) {
+                    result.unshift(array[i])
+                } else {
+                    break
+                }
+            }
+            return result
+        }
+
+    }
+    //takeWhile(array,predicate)从数组的开始提取数组，直到predicate返回假值，predicate会传入三个参数(value,index,array)
+    function takeWhile(array, predicate) {
+        const result = []
+        if (typeof predicate == 'function') {
+            for (let i = 0; i < array.length; i++) {
+                let item = predicate(array[i])
+                if (item) {
+                    result.push(array[i])
+                } else {
+                    break
+                }
+            }
+            return result
+        }
+        if (typeof predicate == 'object' && !Array.isArray(predicate)) {
+            for (let i = 0; i < array.length; i++) {
+                if (isEqual(array[i], predicate)) {
+                    result.push(array[i])
+                } else {
+                    break
+                }
+            }
+            return result
+        }
+        if (Array.isArray(predicate)) {
+            for (let i = 0; i < array.length; i++) {
+                let falg = false
+                let obj = array[i]
+                for (let key in obj) {
+                    if (key == predicate[0] && obj[key] == predicate[1]) {
+                        result.push(array[i])
+                    } else {
+                        falg = true
+                    }
+                }
+                if (falg) {
+                    break
+                }
+            }
+            return result
+        }
+        if (typeof predicate == 'string') {
+            for (let i = 0; i < array.length; i++) {
+                if (array[i][predicate]) {
+                    result.push(array[i])
+                } else {
+                    break
+                }
+            }
+            return result
+        }
+    }
+    //unionWith(...arrays)这个方法类似union，除了它会接受一个comparator调用每一个数组元素的值，comparator会传入2个参数(arrVal,othVal)
+    function unionWith(...arrays) {
+        const iteratee = arrays.pop()
+        const array = [].concat(...arrays)
+        const result = []
+        for (let i = 0; i < array.length; i++) {
+            let flag = true
+            for (let item of result) {
+                if (iteratee(item, array[i])) {
+                    flag = false
+                }
+            }
+            if (flag) {
+                result.push(array[i])
+            }
+        }
+        return result
+    }
+    //uniqBy(array,iteratee)这个方法类似uniq，除了它接受一个iteratee调用每一个数组和值来计算唯一性，iteratee会传入一个参数(value)
+    function uniqBy(array, iteratee) {
+        const result = []
+        if (typeof iteratee == 'function') {
+            for (let element of array) {
+                let m = iteratee(element)
+                let flag = true
+                for (let item of result) {
+                    let n = iteratee(item)
+                    if (m == n) {
+                        flag = false
+                    }
+                }
+                if (flag) {
+                    result.push(element)
+                }
+            }
+            return result
+        }
+        if (typeof iteratee == 'string') {
+            const ary = []
+            for (let i = 0; i < array.length; i++) {
+                let m = array[i][iteratee]
+                if (!ary.includes(m)) {
+                    ary.push(m)
+                    result.push(array[i])
+                }
+            }
+            return result
+        }
+
+    }
+    //uniqWith(array,comparator)这个方法类似uniq，除了它接受一个comparator来比较计算唯一性，comparator会传入两个参数(arrVal,othVal)
+    function uniqWith(array, comparator) {
+        const result = []
+        for (let i = 0; i < array.length; i++) {
+            let element = array[i]
+            let flag = true
+            for (let item of result) {
+                if (comparator(item, element)) {
+                    flag = false
+                }
+            }
+            if (falg) {
+                result.push(element)
+            }
+
+        }
+        return result
+    }
+
+
+
+
 
 
 
@@ -1820,6 +1997,11 @@ var xupupeng = function() {
         intersectionWith: intersectionWith,
         pullAllBy: pullAllBy,
         pullAllWith: pullAllWith,
+        takeTightWhile: takeTightWhile,
+        takeWhile: takeWhile,
+        unionWith: unionWith,
+        uniqBy: uniqBy,
+        uniqWith: uniqWith,
 
 
 
